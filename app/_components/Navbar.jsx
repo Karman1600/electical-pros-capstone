@@ -31,7 +31,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href={"/contact"} className="font-thin text-2xl">
+            <Link href={"/ContactUs"} className="font-thin text-2xl">
               Contact Us
             </Link>
           </li>
