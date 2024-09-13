@@ -14,10 +14,13 @@ function page() {
           </form>
         </div>
       ) : (
-        <div>Not Logged In</div>
+        
+        <div>
+          {redirect("/sign-in")}Not Logged In</div>
       )}
     </div>
   );
 }
 
 export default page;
+  
