@@ -1,3 +1,4 @@
+import { auth } from "@/lib/firebase";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -31,9 +32,25 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href={"/contact"} className="font-thin text-2xl">
+            <Link href={"/ContactUs"} className="font-thin text-2xl">
               Contact Us
             </Link>
+          </li>
+          <li>
+            {auth.currentUser? 
+            
+            <Link href={"/dashboard"} className="font-light text-xl">
+              <Image src={"/profile.png"} width={50} height={50}></Image>
+            </Link>
+
+            :
+            
+            <Link href={"/sign-in"} className="font-light text-xl">
+              <Image src={"/profile.png"} width={50} height={50}></Image>
+            </Link>
+
+            }
+            
           </li>
         </ul>
       </div>
