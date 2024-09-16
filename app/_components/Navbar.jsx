@@ -20,6 +20,11 @@ const NavBar = () => {
             <Image src={"/profile.png"} width={50} height={50}></Image>
             </Link>
           </li>
+          <li>
+            <Link href={"/Services"} className="font-thin text-2xl">
+              Services
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

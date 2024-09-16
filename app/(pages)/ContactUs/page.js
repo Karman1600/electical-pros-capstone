@@ -1,6 +1,30 @@
 import React from 'react';
 
 function ContactUs() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Your message has been sent!');
+    setFormData({
+      name: '',
+      email: '',
+      message: '',
+    });
+  };
+
   return (
     <section id="contact" className="contact">
       <div className="contact-form">
