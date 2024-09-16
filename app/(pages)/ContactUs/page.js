@@ -1,7 +1,4 @@
-"use client"; 
-
-import React, { useState } from 'react';
-import './styles.css'; 
+import React from 'react';
 
 function ContactUs() {
   const [formData, setFormData] = useState({
@@ -29,66 +26,30 @@ function ContactUs() {
   };
 
   return (
-    <div className="contact-us-container">
-      <h1>Contact Us</h1>
-      <div className="contact-info">
-        <div className="contact-item">
-          <h2>Phone:</h2>
-          <p>(778) 908-7119</p>
-        </div>
-        <div className="contact-item">
-          <h2>Physical Address:</h2>
-          <p>3315 Siskin Drive,</p>
-          <p>Abbotsford, B.C.</p>
-        </div>
-        <div className="contact-item">
-          <h2>Email Address:</h2>
-          <p><a href="mailto:Electricalproshiring@outlook.com">Electricalproshiring@outlook.com</a></p>
+    <section id="contact" className="contact">
+      <div className="contact-form">
+        <h2>Contact Us</h2>
+        <div className="container">
+          <form action="action_page.php">
+            <label htmlFor="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name.." />
+
+            <label htmlFor="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name.." />
+
+            <label htmlFor="subject">Subject</label>
+            <textarea id="subject" name="subject" placeholder="Write something.." style={{height: '200px'}}></textarea>
+
+            <input type="submit" value="Submit" />
+          </form>
         </div>
       </div>
-      <div className="get-in-touch">
-        <h2>Get in Touch</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="message">Message:</label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows="4"
-              required
-            />
-          </div>
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
-      <footer className="footer">
-        <p>Copyright © 2024 - Electrical-Pros</p>
+      <footer id="contact">
+        <p>
+          Contact Us: <a href="mailto:info@electrical-pros.com">info@electrical-pros.com</a>
+        </p>
       </footer>
-    </div>
+    </section>
   );
 }
 

@@ -1,17 +1,12 @@
 import { Login } from '@/actions/authServer'
-import Head from 'next/head'
 import Link from 'next/link'
 
 export default function SignIn() {
   return (
-    <>
-      <Head>
-        <title>Sign In</title>
-      </Head>
-      <div className="flex items-center justify-center min-h-screen bg-blue-600">
+      <div className="flex items-center justify-center mt-48">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-md shadow-md">
           <div>
-            <h2 className="text-2xl font-bold text-center text-blue-600">Sign in to your account</h2>
+            <h2 className="text-2xl font-bold text-center ">Sign in to your account</h2>
           </div>
           <form className="mt-8 space-y-6" action={Login}>
             <div className="space-y-4 rounded-md shadow-sm">
@@ -75,6 +70,5 @@ export default function SignIn() {
           </div>
         </div>
       </div>
-    </>
   )
 }

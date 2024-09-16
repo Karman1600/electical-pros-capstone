@@ -1,5 +1,5 @@
 import { Logout } from "@/actions/authServer";
-import { auth } from "@firebase";
+import { auth } from "@/lib/firebase";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -8,16 +8,19 @@ function page() {
     <div>
       {auth.currentUser ? (
         <div>
-          Hello welcome to venus canada {auth.currentUser?.displayName}
+          Hello welcome to Electrical Pro {auth.currentUser?.displayName}
           <form action={Logout}>
             <button type="submit">Log-Out</button>
           </form>
         </div>
       ) : (
-        <div>Not Logged In</div>
+        
+        <div>
+          {redirect("/sign-in")}Not Logged In</div>
       )}
     </div>
   );
 }
 
 export default page;
+  

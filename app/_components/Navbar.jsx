@@ -1,38 +1,23 @@
+import { auth } from "@/lib/firebase";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function Navbar() {
+
+
+const NavBar = () => {
   return (
-    <div className="w-full h-36 bg-navbar flex shadow-lg">
-      <div className="flex m-4 absolute left-10 ">
-        <Link href={"/"}>
-          <Image
-            src={"/logo_EP.png"}
-            width={120}
-            height={120}
-            alt="Logo"
-          ></Image>
-        </Link>
-        {/* <span className='mt-9 ml-5'>
-                Electrical Pros
-            </span> */}
-      </div>
-      <div className="flex absolute right-20 m-12">
-        <ul className="flex gap-10">
+    <header>
+      <nav className="navbar">
+        <div className="logo">Electrical-Pros</div>
+        <ul className="nav-links">
+          <li><Link href={"/index"}>Home</Link></li>
+          <li><Link href={"/services"}>Services</Link></li>
+          <li><Link href={"/about"}> About </Link> </li>
+          <li><Link href={"/ContactUs"}>Contact Us</Link> </li>
           <li>
-            <Link href={"/"} className="font-thin text-2xl">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href={"/about"} className="font-thin text-2xl">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href={"/ContactUs"} className="font-thin text-2xl">
-              Contact Us
+            <Link href ={"/sign-in"} className="font-light text-xl">
+            <Image src={"/profile.png"} width={50} height={50}></Image>
             </Link>
           </li>
           <li>
@@ -41,9 +26,9 @@ function Navbar() {
             </Link>
           </li>
         </ul>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
-}
+};
 
-export default Navbar;
+export default NavBar;
