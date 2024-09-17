@@ -20,9 +20,10 @@ export async function Login(formData){
 
 export async function Register(formData){
 
+    const name = await formData.get('name')
     const email = await formData.get('email')
     const password = await formData.get('password')
-    await registerUser(email, password)
+    await registerUser(name,email, password)
 
     redirect('/')
 
