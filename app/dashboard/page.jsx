@@ -2,6 +2,7 @@ import { Logout } from "@/actions/authServer";
 import { auth } from "@/lib/firebase";
 import { redirect } from "next/navigation";
 import React from "react";
+import NavBar from "../_components/Navbar";
 
 function page() {
   return (
