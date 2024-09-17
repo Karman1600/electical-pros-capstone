@@ -9,9 +9,9 @@ import Link from "next/link";
 function page() {
   return (
     <div>
-      {/* {auth.currentUser ? ( */}
+      {auth.currentUser ? (
       <div className="m-auto justify-center items-center flex flex-col mt-32">
-        Hello welcome "" to Electrical Pro
+        Hello welcome {auth?.currentUser?.displayName} to Electrical Pros
         <Link href="/dashboard/book">
           <div className="m-3 p-4 justify-center items-center flex flex-col gap-2 bg-slate-100 rounded-3xl">
             <Image src={"/calendar.svg"} height={100} width={100} />
@@ -24,11 +24,11 @@ function page() {
           </button>
         </form>
       </div>
-      {/* ) : (
+      ) : (
         
         <div>
           {redirect("/sign-in")}Not Logged In</div>
-      )} */}
+      )}
     </div>
   );
 }
