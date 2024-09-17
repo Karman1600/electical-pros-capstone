@@ -36,22 +36,22 @@ function Navbar() {
               Contact Us
             </Link>
           </li>
-          <li>
-            {auth.currentUser? 
-            
-            <Link href={"/dashboard"} className="font-light text-xl">
-              <Image src={"/profile.png"} width={50} height={50}></Image>
-            </Link>
-
-            :
-            
-            <Link href={"/sign-in"} className="font-light text-xl">
-              <Image src={"/profile.png"} width={50} height={50}></Image>
-            </Link>
-
-            }
-            
-          </li>
+          {auth.currentUser ? (
+            <li className="mt-1">
+              <Link href={"/dashboard"} className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50">
+                Dashboard
+              </Link>
+            </li>
+          ) : (
+            <li className="mt-1">
+              <Link
+                href={"/sign-in"}
+                className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50"
+              >
+                Sign In
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>
