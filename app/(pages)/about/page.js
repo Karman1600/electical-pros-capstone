@@ -24,11 +24,12 @@ function AboutUs() {
         <div className="flex-1 max-w-md mr-5">
           <h2 className="text-3xl font-bold mb-5">Our Journey</h2>
           <p className="text-lg leading-8 mb-4">
-            We've been around for quite a while and have been continuously delivering quality service since [insert year]. 
+            We've been around for quite a while and have been continuously delivering quality service since. 
             Our journey began with a small team of dedicated engineers, and today we are proud to be a leader in electrical 
             consultancy across Western Canada, providing bespoke engineering and design results of the highest level.
           </p>
         </div>
+        <img src="https://t3.ftcdn.net/jpg/02/99/23/72/360_F_299237262_Cj3wYz3HK7Aak1qNW4biP268qL1wphOr.jpg" alt="Electrical_tower" />
       </section>
     </div>
   );
