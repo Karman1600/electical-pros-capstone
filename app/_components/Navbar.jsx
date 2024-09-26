@@ -20,6 +20,16 @@ const NavBar = () => {
             <Image src={"/profile.png"} width={50} height={50}></Image>
             </Link>
           </li>
+          <li>
+            <Link href={"/search"} className="font-light text-xl">
+            <Image src={"/search.png"} width={20} height={20}></Image>
+          </Link>
+          </li>
+          {/* <li> 
+            <Link href={"/search"} className="font-light text-xl">
+            <Image src={"/searchicon.jpg"} width={40} height={40}></Image>
+            </Link>
+          </li> */}
         </ul>
       </nav>
     </header>
