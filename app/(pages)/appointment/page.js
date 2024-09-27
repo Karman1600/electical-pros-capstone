@@ -1,6 +1,6 @@
 "use client"; 
 import React, { useState } from 'react';
-
+import './styles.css'; 
 
 function AppointmentPage() {
   const [service, setService] = useState('');
