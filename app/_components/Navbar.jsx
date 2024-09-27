@@ -36,6 +36,11 @@ function Navbar() {
               Contact Us
             </Link>
           </li>
+          <li>
+            <Link href={"/appointment"} className="font-thin text-2xl">
+              Appointment
+            </Link>
+          </li>
           {auth.currentUser ? (
             <li className="mt-1">
               <Link href={"/dashboard"} className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50">
