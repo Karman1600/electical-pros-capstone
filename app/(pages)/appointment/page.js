@@ -1,11 +1,14 @@
 "use client"; 
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'; // Import the CSS for the date picker
 
 function AppointmentPage() {
   const [service, setService] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null); // State for the selected date
   const [isBooked, setIsBooked] = useState(false);
 
   const handleServiceChange = (e) => {
@@ -14,7 +17,7 @@ function AppointmentPage() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (service && fullName && email && mobile) {
+    if (service && fullName && email && mobile && selectedDate) {
       setIsBooked(true);
     } else {
       alert('Please fill out all fields.');
@@ -27,6 +30,7 @@ function AppointmentPage() {
     setFullName('');
     setEmail('');
     setMobile('');
+    setSelectedDate(null); // Reset selected date
   };
 
   return (
@@ -96,6 +100,18 @@ function AppointmentPage() {
             />
           </div>
 
+          <div>
+            <label htmlFor="date" className="block text-sm font-medium text-gray-700">Select Date</label>
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              placeholderText="Select a date"
+              dateFormat="yyyy/MM/dd"
+              minDate={new Date()} // Prevent selection of past dates
+              className="mt-1 block w-full bg-gray-50 border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+
           <button 
             type="submit" 
             className="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -108,7 +124,7 @@ function AppointmentPage() {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg space-y-4 text-center">
               <h2 className="text-2xl font-semibold">Appointment Confirmed</h2>
-              <p>Your appointment for <strong>{service}</strong> has been successfully booked!</p>
+              <p>Your appointment has been booked for <strong>{selectedDate ? selectedDate.toLocaleDateString() : ''}</strong> for <strong>{service}</strong>!</p>
               <button 
                 onClick={closePopup} 
                 className="bg-indigo-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
