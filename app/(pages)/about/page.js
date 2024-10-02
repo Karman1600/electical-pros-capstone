@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link'; // Importing Next.js Link component
 
 function AboutUs() {
   return (
@@ -8,7 +9,7 @@ function AboutUs() {
         <h1 className="text-4xl font-bold mb-5 text-gray-800">About Us</h1>
         <p className="text-lg leading-8 mb-4">
           Our consulting team leverages our diverse expertise to tackle various engineering challenges. 
-          With a robust portfolio of projects spread across Abbotsford, British Columbia, and we have established a track record of success.
+          With a robust portfolio of projects spread across Abbotsford, British Columbia, we have established a track record of success.
         </p>
         <p className="text-lg leading-8 mb-4">
           Our client base spans across multiple sectors including healthcare and treatment centers, residential complexes, 
@@ -18,20 +19,18 @@ function AboutUs() {
         </p>
       </section>
 
-      {/* Image and Contact Us Button */}
-      <section className="flex flex-col lg:flex-row justify-between items-center bg-[#f9f9f9] p-10 mt-10">
-        <div className="flex-1 max-w-md mr-5">
-          <img
-            className="rounded-lg shadow-md"
-            src="https://t3.ftcdn.net/jpg/02/99/23/72/360_F_299237262_Cj3wYz3HK7Aak1qNW4biP268qL1wphOr.jpg"
-            alt="Electrical panel"
-          />
-        </div>
-        <div className="flex-1 text-center lg:text-left mt-10 lg:mt-0">
+      {/* Background Image with Contact Us Button */}
+      <section
+        className="flex justify-center items-center bg-cover bg-center h-96 mt-10"
+        style={{
+          backgroundImage: 'url("/images/background-image.jpg")',
+        }}
+      >
+        <Link href="/ContactUs">
           <button className="bg-orange-500 text-white py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-orange-600">
             Contact Us
           </button>
-        </div>
+        </Link>
       </section>
 
       {/* FAQ Section */}
