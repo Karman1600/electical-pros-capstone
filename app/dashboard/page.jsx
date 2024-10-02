@@ -14,7 +14,7 @@ function page() {
         Hello welcome {auth?.currentUser?.displayName} to Electrical Pros
         <Link href="/dashboard/book">
           <div className="m-3 p-4 justify-center items-center flex flex-col gap-2 bg-slate-100 rounded-3xl">
-            <Image src={"/calendar.svg"} height={100} width={100} />
+            <Image src={"/calendar.svg"} height={100} width={100} alt="calender icon" />
             <p>Get an Appointment</p>
           </div>
         </Link>
