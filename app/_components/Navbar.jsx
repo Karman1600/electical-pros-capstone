@@ -3,33 +3,47 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-
-
 const NavBar = () => {
   return (
-    <header>
-      <nav className="navbar">
-        <div className="logo">Electrical-Pros</div>
-        <ul className="nav-links">
+    <header className="bg-gray-900 p-4">
+      <nav className="flex justify-between items-center">
+        <div className="text-white text-2xl font-bold">Electrical-Pros</div>
+        <ul className="flex space-x-6 items-center text-white">
           <li><Link href={"/index"}>Home</Link></li>
           <li><Link href={"/Services"}>Services</Link></li>
-          <li><Link href={"/about"}> About </Link> </li>
-          <li><Link href={"/ContactUs"}>Contact Us</Link> </li>
+          <li><Link href={"/about"}>About</Link></li>
+          <li><Link href={"/ContactUs"}>Contact Us</Link></li>
+          
           <li>
-            <Link href ={"/sign-in"} className="font-light text-xl">
-            <Image src={"/profile.png"} width={50} height={50}></Image>
+            <Link href={"/sign-in"}>
+              <Image src={"/profile.png"} width={50} height={50} alt="Profile" className="rounded-full"/>
             </Link>
           </li>
           <li>
-            <Link href={"/search"} className="font-light text-xl">
-            <Image src={"/search.png"} width={20} height={20}></Image>
-          </Link>
-          </li>
-          {/* <li> 
-            <Link href={"/search"} className="font-light text-xl">
-            <Image src={"/searchicon.jpg"} width={40} height={40}></Image>
+            <Link href={"/search"}>
+              <Image src={"/search.png"} width={20} height={20} alt="Search" />
             </Link>
-          </li> */}
+          </li>
+
+          {auth.currentUser ? (
+            <li>
+              <Link
+                href={"/dashboard"}
+                className="px-4 py-2 text-gray-900 bg-white rounded-md hover:bg-gray-100"
+              >
+                Dashboard
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link
+                href={"/sign-in"}
+                className="px-4 py-2 text-gray-900 bg-white rounded-md hover:bg-gray-100"
+              >
+                Sign In
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
