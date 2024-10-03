@@ -23,7 +23,9 @@ function ServicesPage() {
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Electrical Safety Inspections</h2>
+          <h2 className="text-3xl font-bold mb-3">
+          <Link href="/Services/Safety-inspection">Electrical Safety Inspections</Link>
+          </h2>
           <p className="text-lg leading-8">
             We provide comprehensive inspections to ensure compliance with safety codes and identify potential hazards.
           </p>

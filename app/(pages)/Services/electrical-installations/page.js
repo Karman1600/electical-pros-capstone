@@ -8,11 +8,23 @@ function ElectricalInstallations() {
     area: 0, // Area of the house in square meters
   });
 
+  // Define fixed labor and material costs
+  const laborCostPerSquareMeter = 5; // Example labor cost per square meter
+  const materialCostPerSquareMeter = 10; // Example material cost per square meter
+
   // Handle form submission
   const handleEstimate = (event) => {
     event.preventDefault();
-    const totalCost = inputValues.area * 10; // $10 per square meter formula
-    setEstimate(totalCost);
+    
+    const laborCost = laborCostPerSquareMeter * inputValues.area;
+    const materialCost = materialCostPerSquareMeter * inputValues.area;
+    const totalCost = laborCost + materialCost; // Total cost formula
+
+    setEstimate({
+      laborCost,
+      materialCost,
+      totalCost,
+    });
   };
 
   return (
@@ -21,7 +33,7 @@ function ElectricalInstallations() {
       <section className="max-w-5xl mx-auto p-10 bg-white rounded-lg shadow-md text-center">
         <h1 className="text-4xl font-bold mb-5 text-gray-800">Electrical Installations & Upgrades</h1>
         <p className="text-lg leading-8 mb-4">
-          We offer professional electrical installations and upgrades for residential and commercial properties. Our services include wiring, panel upgrades, and much more.
+        Our Electrical Installations & Upgrades service covers complete wiring, panel upgrades, and installation of outlets and switches for both new constructions and existing properties. We ensure that all installations meet modern safety standards and provide optimal electrical performance. Additionally, we offer surge protection and backup generator installations to safeguard your property. Whether it's a new build or an upgrade, our services are designed for safety, efficiency, and future-proofing your electrical systems.
         </p>
       </section>
 
@@ -48,7 +60,9 @@ function ElectricalInstallations() {
         {/* Display the estimate */}
         {estimate && (
           <div className="mt-5">
-            <h3 className="text-2xl font-bold">Estimated Total Cost: ${estimate}</h3>
+            <h3 className="text-2xl font-bold">Labor Cost: ${estimate.laborCost}</h3>
+            <h3 className="text-2xl font-bold">Estimated Material Cost: ${estimate.materialCost}</h3>
+            <h3 className="text-2xl font-bold mt-3">Estimated Total Cost: ${estimate.totalCost}</h3>
           </div>
         )}
       </section>
