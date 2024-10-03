@@ -1,9 +1,28 @@
+"use client"
+import { useUserAuth } from "@/lib/auth-context";
 import { auth } from "@/lib/firebase";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 function Navbar() {
+
+  const { user } = useUserAuth();
+  
+  useEffect(() => {
+      const checkUserLoggedIn = async () => {
+        if (user) {
+          console.log("Logged IN")
+          // If the user is logged in, call loadWeather to fetch weather data
+        } else {
+          // Handle the case where the user is not logged in
+          console.log('User is not logged in');
+        }
+      };
+  
+      checkUserLoggedIn(); // Call the function to check user login status
+    }, [user]);
+
   return (
     <div className="w-full h-36 bg-navbar flex shadow-lg">
       <div className="flex m-4 absolute left-10 ">
