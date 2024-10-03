@@ -9,7 +9,9 @@ function Home() {
         <div className="hero-content">
           <h1>Expert Electrical Consulting</h1>
           <p>Empowering your business with expert electrical solutions.</p>
-          <button>Discover More</button>
+          <a href="/discover">
+          <button>Discover more</button>
+        </a>
         </div>
         <div className="additional-info">
           <p>
