@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 
 function ServicesPage() {
   return (
@@ -13,7 +14,9 @@ function ServicesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 max-w-5xl mx-auto">
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Electrical Installations & Upgrades</h2>
+          <h2 className="text-3xl font-bold mb-3">
+            <Link href="/Services/electrical-installations">Electrical Installations & Upgrades</Link>
+          </h2>
           <p className="text-lg leading-8">
             We specialize in wiring, panels, lighting, and appliance installations for both homes and businesses.
           </p>
