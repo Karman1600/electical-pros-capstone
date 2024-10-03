@@ -24,7 +24,7 @@ function ServicesPage() {
 
         <div className="bg-white p-5 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold mb-3">
-          <Link href="/Services/Safety-inspection">Electrical Safety Inspections</Link>
+            <Link href="/Services/Safety-inspection">Electrical Safety Inspections</Link>
           </h2>
           <p className="text-lg leading-8">
             We provide comprehensive inspections to ensure compliance with safety codes and identify potential hazards.
@@ -48,7 +48,7 @@ function ServicesPage() {
         <div className="bg-white p-5 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold mb-3">Lighting Design & Installation</h2>
           <p className="text-lg leading-8">
-          Enhance the aesthetics and functionality of your space with tailored indoor and outdoor lighting solutions.Enhance the aesthetics and functionality of your space with tailored indoor and outdoor lighting solutions.
+            Enhance the aesthetics and functionality of your space with tailored indoor and outdoor lighting solutions.
           </p>
         </div>
 

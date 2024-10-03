@@ -18,20 +18,15 @@ function AboutUs() {
           developing sustainable and cost-effective solutions tailored for today's built environment.
         </p>
       </section>
-
-      {/* Background Image with Contact Us Button */}
-      <section
-        className="flex justify-center items-center bg-cover bg-center h-96 mt-10"
-        style={{
-          backgroundImage: 'url("/images/background-image.jpg")',
-        }}
-      >
+      
+      <section className="flex justify-center mt-10">
         <Link href="/ContactUs">
           <button className="bg-orange-500 text-white py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-orange-600">
-            Contact Us
-          </button>
+              Contact Us
+           </button>
         </Link>
       </section>
+
 
       {/* FAQ Section */}
       <section className="max-w-4xl mx-auto p-10 mt-10 bg-white rounded-lg shadow-md">
