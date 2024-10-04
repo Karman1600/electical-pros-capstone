@@ -52,7 +52,6 @@ function page() {
             {noAppointment? (<p className="text-sm text-center">No Booked Appointments</p>): ""}
 
             {appointments?.map((time) => {
-              // const jsDate = time.toDate()
               time.setDate(time.getDate())
               const timeN = time.toLocaleString();
 
