@@ -46,12 +46,11 @@ function Navbar() {
               {/* <Image src={"/search.png"} width={20} height={20} alt="Search" /> */}
 
               <svg
-                class="svg-icon search-icon"
+                class="svg-icon search-icon size-6"
                 aria-labelledby="title desc"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 19.9 19.7"
-                className="size-6"
               >
                 <title id="title">Search Icon</title>
                 <desc id="desc">A magnifying glass icon.</desc>
