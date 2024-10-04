@@ -28,7 +28,7 @@ function Navbar() {
         <div className="text-white text-2xl font-bold">Electrical-Pros</div>
         <ul className="flex space-x-6 items-center text-white">
           <li>
-            <Link href={"/index"}>Hom</Link>
+            <Link href={"/index"}>Home</Link>
           </li>
           <li>
             <Link href={"/Services"}>Services</Link>
