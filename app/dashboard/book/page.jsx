@@ -73,9 +73,7 @@ function page() {
       const checkUserLoggedIn = async () => {
         if (user) {
           console.log("Logged IN")
-          // If the user is logged in, call loadWeather to fetch weather data
         } else {
-          // Handle the case where the user is not logged in
           console.log('User is not logged in');
         }
       };
