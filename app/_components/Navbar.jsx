@@ -15,11 +15,6 @@ const NavBar = () => {
           <li><Link href={"/ContactUs"}>Contact Us</Link></li>
           
           <li>
-            <Link href={"/sign-in"}>
-              <Image src={"/profile.png"} width={50} height={50} alt="Profile" className="rounded-full"/>
-            </Link>
-          </li>
-          <li>
             <Link href={"/search"}>
               <Image src={"/search.png"} width={20} height={20} alt="Search" />
             </Link>
