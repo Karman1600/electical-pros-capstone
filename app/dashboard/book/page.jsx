@@ -10,7 +10,6 @@ function page() {
 
   const [minDate, setMinDate] = useState("");
   const [status, setStatus] = useState(false);
-  const [appointments, setAppointments] = useState("");
   const [message, setMessage] = useState();
   const [formData, setFormData] = useState({
     name: "",
@@ -91,7 +90,6 @@ function page() {
         <h2 className="flex text-center align-top font-bold text-xl font-sans mb-4">
           Book an appointment
         </h2>
-        {appointments}
         <div>
           <form onSubmit={handleSubmit}>
             <div className="flex gap-3 align-middle justify-center">

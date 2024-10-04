@@ -12,6 +12,7 @@ import { Timestamp } from "firebase/firestore";
 
 function page() {
   const [appointments, setAppointments] = useState();
+  const [noAppointment, setNoAppointment] = useState(false);
   const { user, SignOut } = useUserAuth();
 
   useEffect(() => {
@@ -21,10 +22,13 @@ function page() {
 
         const data = await fetchAppointmentDate(user.email);
         const times = [];
-        data.map((doc) => {
-          const timestamp = doc.appointmentDate;
-          times.push(timestamp);
-        });
+        if (data) {
+          data.map((time) => {
+            times.push(time);
+          });
+        }else{
+          setNoAppointment(true)
+        }
 
         setAppointments(times);
 
@@ -42,14 +46,27 @@ function page() {
     <div>
       {user ? (
         <div className="m-auto justify-center items-center flex flex-col mt-32">
-          {appointments?.map((time) => {
-            const temp = []
-            const timeN = new Timestamp(parseInt(time.seconds).toFixed());
-            temp.push(timeN)
-
-            return(<>{}</>)
-          })}
           Hello welcome {auth?.currentUser?.displayName} to Electrical Pros
+          <div className="px-10">
+            <h2 className="">Your Booked Appointments</h2>
+            {noAppointment? (<p className="text-sm text-center">No Booked Appointments</p>): ""}
+
+            {appointments?.map((time) => {
+              // const jsDate = time.toDate()
+              time.setDate(time.getDate())
+              const timeN = time.toLocaleString();
+
+              const newDate = new Date(time)
+              newDate.setDate(newDate.getDate() + 1)
+
+              return (
+                <>
+                  {newDate.toLocaleString()}
+                  <br></br>
+                </>
+              );
+            })}
+          </div>
           <Link href="/dashboard/book">
             <div className="m-3 p-4 justify-center items-center flex flex-col gap-2 bg-slate-100 rounded-3xl">
               <Image
