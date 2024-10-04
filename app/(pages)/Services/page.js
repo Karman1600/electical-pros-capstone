@@ -1,47 +1,66 @@
+"use client";
 import React from 'react';
-import './styles.css';
+import Link from 'next/link';
 
-function Services() {
+function ServicesPage() {
   return (
-    <div className="services-container">
-      <div className="services-header">
-        <h1>Services</h1>
+    <div className="font-sans text-gray-800 bg-[#f9f9f9] p-5">
+      <section className="max-w-5xl mx-auto p-10 bg-white rounded-lg shadow-md text-center">
+        <h1 className="text-4xl font-bold mb-5 text-gray-800">Services</h1>
+        <p className="text-lg leading-8 mb-4">
+          Our electrical consultancy services offer a range of expert solutions to meet your specific electrical needs.
+        </p>
+      </section>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 max-w-5xl mx-auto">
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-3">
+            <Link href="/Services/electrical-installations">Electrical Installations & Upgrades</Link>
+          </h2>
+          <p className="text-lg leading-8">
+            We specialize in wiring, panels, lighting, and appliance installations for both homes and businesses.
+          </p>
+        </div>
+
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-3">
+            <Link href="/Services/Safety-inspection">Electrical Safety Inspections</Link>
+          </h2>
+          <p className="text-lg leading-8">
+            We provide comprehensive inspections to ensure compliance with safety codes and identify potential hazards.
+          </p>
+        </div>
+
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-3">Home Automation & Smart Systems</h2>
+          <p className="text-lg leading-8">
+            Enhance your lifestyle with smart lighting, security, and energy management systems.
+          </p>
+        </div>
+
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-3">Surge Protection & Backup Generators</h2>
+          <p className="text-lg leading-8">
+            Protect your home and business from power surges and ensure backup power during outages.
+          </p>
+        </div>
+        
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-3">Lighting Design & Installation</h2>
+          <p className="text-lg leading-8">
+            Enhance the aesthetics and functionality of your space with tailored indoor and outdoor lighting solutions.
+          </p>
+        </div>
+
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-3">EV Charger Installation</h2>
+          <p className="text-lg leading-8">
+            We install electric vehicle charging stations for both residential and commercial properties.
+          </p>
+        </div>
       </div>
-      <div className="services-content">
-        <div className="service-container">
-          <h2>Consulting Services</h2>
-          <p>Our consulting services are designed to help clients in the oil and gas industry navigate complex challenges and achieve operational excellence. We provide strategic advice, technical expertise, and innovative solutions tailored to meet the specific needs of each client.</p>
-        </div>
-        <div className="service-container">
-          <h2>Solution Design</h2>
-          <p>Design of electrical systems for commercial, residential, and industrial buildings, as well as public infrastructure.</p>
-        </div>
-        <div className="service-container">
-          <h2>Electrical Engineering Drawing</h2>
-          <p>We provide precise documentation and detailed designs necessary for the efficient setup, maintenance, and operation of electrical systems.</p>
-        </div>
-        <div className="service-container">
-          <h2>System Analysis</h2>
-          <p>From power distribution systems to load calculations, we ensure your electrical infrastructure is robust and efficient.</p>
-        </div>
-        <div className="service-container">
-          <h2>Project Consulting</h2>
-          <p>Professional electrical engineering consulting services to help clients adhere to best practices and comply with industry standards.</p>
-        </div>
-        <div className="service-container">
-          <h2>Maintenance Services</h2>
-          <p>Regular and corrective maintenance solutions to keep your electrical systems running smoothly and efficiently.</p>
-        </div>
-        <div className="service-container">
-          <h2>Training and Development</h2>
-          <p>Comprehensive programs to enhance the skills and knowledge of your team, including technical training, leadership development, and safety training.</p>
-        </div>
-      </div>
-      <footer className="footer">
-        <p>Copyright © 2024 - Electrical-Pros</p>
-      </footer>
     </div>
   );
 }
 
-export default Services;
+export default ServicesPage;

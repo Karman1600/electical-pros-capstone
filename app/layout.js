@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./_components/Navbar";
 import { AuthContextProvider } from "@/lib/auth-context";
 
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
