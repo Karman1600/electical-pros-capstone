@@ -53,9 +53,11 @@ function page() {
     const response = await bookAppointment({name: user.displayName, email: user.email, date: formData.date, time: formData.time});
     console.log(response);
 
-    response ? setMessage({ message: "Appointment Booked" }) : "";
+    response.status ? setMessage(response?.response) : "";
   };
 
+
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({

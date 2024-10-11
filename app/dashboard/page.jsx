@@ -1,19 +1,35 @@
 "use client";
 import { Logout } from "@/actions/authServer";
 import { auth } from "@/lib/firebase";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import NavBar from "../_components/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { useUserAuth } from "@/lib/auth-context";
-import { fetchAppointmentDate } from "@/lib/firestoreFunctions";
+import { deleteCurrentAppointment, fetchAppointmentDate } from "@/lib/firestoreFunctions";
 import { Timestamp } from "firebase/firestore";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 function page() {
   const [appointments, setAppointments] = useState();
   const [noAppointment, setNoAppointment] = useState(false);
   const { user, SignOut } = useUserAuth();
+
+  const router = useRouter()
+
+  const handleDeleteAppointment = async (data)=>{
+    const finalData ={
+      email: user.email,
+      appointmentDate: Timestamp.fromDate(data).toJSON()
+    }
+
+    const response =  await deleteCurrentAppointment(finalData)
+
+    if(response){
+      
+    }
+  }
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
@@ -26,8 +42,8 @@ function page() {
           data.map((time) => {
             times.push(time);
           });
-        }else{
-          setNoAppointment(true)
+        } else {
+          setNoAppointment(true);
         }
 
         setAppointments(times);
@@ -49,18 +65,25 @@ function page() {
           Hello welcome {auth?.currentUser?.displayName} to Electrical Pros
           <div className="px-10">
             <h2 className="">Your Booked Appointments</h2>
-            {noAppointment? (<p className="text-sm text-center">No Booked Appointments</p>): ""}
+            {noAppointment ? (
+              <p className="text-sm text-center">No Booked Appointments</p>
+            ) : (
+              ""
+            )}
 
             {appointments?.map((time) => {
-              time.setDate(time.getDate())
+              time.setDate(time.getDate());
               const timeN = time.toLocaleString();
 
-              const newDate = new Date(time)
-              newDate.setDate(newDate.getDate() + 1)
+              const newDate = new Date(time);
+              newDate.setDate(newDate.getDate() + 1);
 
               return (
                 <>
                   {newDate.toLocaleString()}
+                  <button onClick={()=>handleDeleteAppointment(time)}>
+                    <FaRegTrashCan />
+                  </button>
                   <br></br>
                 </>
               );

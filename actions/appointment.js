@@ -67,10 +67,10 @@ export async function bookAppointment(formData) {
 
   try {
     const response = await bookAppointmentInDB(data);
-    console.log(response);
+    return {response, status: true};
+
   } catch (err) {
     return err;
   }
 
-  return true;
 }
