@@ -1,4 +1,5 @@
 import { bookAppointment } from "@/actions/appointment";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const FormComponent = ({ userOptions }) => {
@@ -8,6 +9,8 @@ const FormComponent = ({ userOptions }) => {
     date: "",
     time: "",
   });
+
+  const router = useRouter()
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +41,7 @@ const FormComponent = ({ userOptions }) => {
     // Handle form submission logic here
     const response = await bookAppointment({name: formData.name, email: formData.email, date: formData.date, time: formData.time});
     console.log(response);
-    
+    response.status? router.push("/dashboard/admin") : ""
   };
 
   // Get today's date in YYYY-MM-DD format
