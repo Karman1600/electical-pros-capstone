@@ -7,34 +7,43 @@ import NavBar from "../_components/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { useUserAuth } from "@/lib/auth-context";
-import { deleteCurrentAppointment, fetchAppointmentDate } from "@/lib/firestoreFunctions";
+import {
+  deleteCurrentAppointment,
+  fetchAppointmentDate,
+} from "@/lib/firestoreFunctions";
 import { Timestamp } from "firebase/firestore";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { getUserRole } from "@/lib/authUtilities";
 
 function page() {
   const [appointments, setAppointments] = useState();
   const [noAppointment, setNoAppointment] = useState(false);
   const { user, SignOut } = useUserAuth();
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const handleDeleteAppointment = async (data)=>{
-    const finalData ={
+  const handleDeleteAppointment = async (data) => {
+    const finalData = {
       email: user.email,
-      appointmentDate: Timestamp.fromDate(data).toJSON()
-    }
+      appointmentDate: Timestamp.fromDate(data).toJSON(),
+    };
 
-    const response =  await deleteCurrentAppointment(finalData)
+    const response = await deleteCurrentAppointment(finalData);
 
-    if(response){
-      
+    if (response) {
+      setNoAppointment(true)
+      setAppointments()
     }
-  }
+  };
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
       if (user) {
-        console.log("Logged IN");
+        const userRole = await getUserRole(user.uid)
+
+        if(userRole != "client"){
+          router.push("/dashboard/admin")
+        }
 
         const data = await fetchAppointmentDate(user.email);
         const times = [];
@@ -81,7 +90,7 @@ function page() {
               return (
                 <>
                   {newDate.toLocaleString()}
-                  <button onClick={()=>handleDeleteAppointment(time)}>
+                  <button onClick={() => handleDeleteAppointment(time)}>
                     <FaRegTrashCan />
                   </button>
                   <br></br>
