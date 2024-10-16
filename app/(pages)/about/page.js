@@ -1,5 +1,19 @@
+'use client';  // This marks the component as a client-side component
+
 import React from 'react';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import Link from 'next/link'; // Importing Next.js Link component
+
+// Google Maps configuration
+const containerStyle = {
+  width: '100%',
+  height: '400px',
+};
+
+const location = {
+  lat: 49.017204,  // Latitude for 3315 Siskin Drive, Abbotsford, B.C.
+  lng: -122.360827, // Longitude for 3315 Siskin Drive, Abbotsford, B.C.
+};
 
 function AboutUs() {
   return (
@@ -18,7 +32,23 @@ function AboutUs() {
           developing sustainable and cost-effective solutions tailored for today's built environment.
         </p>
       </section>
-      
+
+      {/* Google Maps Section */}
+      <section className="mt-10">
+        <h2 className="text-2xl font-bold mb-5 text-center text-gray-800">Our Location</h2>
+        <LoadScript googleMapsApiKey="AIzaSyBpSX9S7L-DCZeLkxWU17TpM-aX7yjUXaQ">
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={location}
+            zoom={15}
+          >
+            {/* Marker for the location */}
+            <Marker position={location} />
+          </GoogleMap>
+        </LoadScript>
+      </section>
+
+      {/* Contact Us Button */}
       <section className="flex justify-center mt-10">
         <Link href="/ContactUs">
           <button className="bg-orange-500 text-white py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-orange-600">
@@ -26,8 +56,6 @@ function AboutUs() {
            </button>
         </Link>
       </section>
-
-
       {/* FAQ Section */}
       <section className="max-w-4xl mx-auto p-10 mt-10 bg-white rounded-lg shadow-md">
         <h2 className="text-3xl font-bold mb-5 text-center text-gray-800">F.A.Q.</h2>
