@@ -14,31 +14,38 @@ function ServicesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 max-w-5xl mx-auto">
         <div className="bg-white p-5 rounded-lg shadow-md">
+
           <h2 className="text-3xl font-bold mb-3">
             <Link href="/Services/electrical-installations">Electrical Installations & Upgrades</Link>
           </h2>
           <p className="text-lg leading-8">
             We specialize in wiring, panels, lighting, and appliance installations for both homes and businesses.
+
           </p>
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
+
           <h2 className="text-3xl font-bold mb-3">
             <Link href="/Services/Safety-inspection">Electrical Safety Inspections</Link>
           </h2>
           <p className="text-lg leading-8">
             We provide comprehensive inspections to ensure compliance with safety codes and identify potential hazards.
+
           </p>
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
+
           <h2 className="text-3xl font-bold mb-3">Home Automation & Smart Systems</h2>
           <p className="text-lg leading-8">
             Enhance your lifestyle with smart lighting, security, and energy management systems.
+
           </p>
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
+
           <h2 className="text-3xl font-bold mb-3">Surge Protection & Backup Generators</h2>
           <p className="text-lg leading-8">
             Protect your home and business from power surges and ensure backup power during outages.
@@ -56,6 +63,7 @@ function ServicesPage() {
           <h2 className="text-3xl font-bold mb-3">EV Charger Installation</h2>
           <p className="text-lg leading-8">
             We install electric vehicle charging stations for both residential and commercial properties.
+
           </p>
         </div>
       </div>
