@@ -4,7 +4,8 @@ import Link from 'next/link';
 
 function ServicesPage() {
   return (
-    <div className="font-sans text-gray-800 bg-[#f9f9f9] p-5">
+    <div className='bg-[#f9f9f9] h-screen bottom-0'>
+    <div className="font-sans text-gray-800 p-5">
       <section className="max-w-5xl mx-auto p-10 bg-white rounded-lg shadow-md text-center">
         <h1 className="text-4xl font-bold mb-5 text-gray-800">Services</h1>
         <p className="text-lg leading-8 mb-4">
@@ -59,7 +60,7 @@ function ServicesPage() {
           </p>
         </div>
       </div>
-    </div>
+    </div></div>
   );
 }
 

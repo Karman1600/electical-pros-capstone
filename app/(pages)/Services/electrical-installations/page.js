@@ -7,7 +7,6 @@ function ElectricalInstallations() {
   const [inputValues, setInputValues] = useState({
     area: 0,
     appliances: [],
-    customAppliance: "",
   });
 
   // Define costs
