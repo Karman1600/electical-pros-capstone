@@ -128,10 +128,7 @@ function ElectricalInstallations() {
               type="number"
               value={inputValues.area}
               min={0}
-              onChange={(e) => {
-                const value = Math.max(0, parseInt(e.target.value, 10) || 0);
-                setInputValues({ ...inputValues, area: value });
-              }}
+              onChange={(e) => setInputValues({ ...inputValues, area: e.target.value })}
               className="border p-2 w-full rounded"
               required
             />
