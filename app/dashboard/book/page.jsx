@@ -74,7 +74,7 @@ function page() {
   useEffect(() => {
       const checkUserLoggedIn = async () => {
         if (user) {
-          console.log("Logged IN")
+          console.log("Logged IN") 
         } else {
           console.log('User is not logged in');
         }
