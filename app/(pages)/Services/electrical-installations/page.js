@@ -99,7 +99,7 @@ function ElectricalInstallations() {
                 <li>Sound System</li>
               </ul>
               <p className="mt-2">
-                If you need more appliances, please book an appointment using <a href="/appointment" className="text-blue-500">this link</a>.
+                If you need more appliances, please book an appointment with us for a custom estimate.
               </p>
             </div>
           )}
