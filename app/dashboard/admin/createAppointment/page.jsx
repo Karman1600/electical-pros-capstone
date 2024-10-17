@@ -18,6 +18,7 @@ function createAppointmentPage() {
             //     names.push(user.name)
             // })
             // setUsersNames(names)
+            console.log(filteredData)
         }
         fetchUserData()
     },[])

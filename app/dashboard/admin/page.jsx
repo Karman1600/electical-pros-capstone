@@ -34,7 +34,9 @@ function adminPage() {
           Manually Add
         </button>
       </Link>
-      <AppointmentTable />
+      <div>
+        <AppointmentTable />
+      </div>
       <form action={SignOut}>
         <button type="submit" className="flex p-3 bg-red-400 m-2 rounded-2xl">
           Log Out
