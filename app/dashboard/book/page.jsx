@@ -91,7 +91,7 @@ function page() {
           Book an appointment
         </h2>
         <div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}
             <div className="flex gap-3 align-middle justify-center">
               <label className="mt-1">{user.displayName}</label>
               {/* <input
