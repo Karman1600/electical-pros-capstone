@@ -3,7 +3,6 @@
 import { loginUser, logOutUser, registerUser } from '@/lib/authUtilities'
 import { redirect } from 'next/navigation'
 
-const bcryptjs = require('bcryptjs')
 
 export async function Login(formData){
 

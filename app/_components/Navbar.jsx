@@ -1,49 +1,66 @@
+"use client";
+import { useUserAuth } from "@/lib/auth-context";
 import { auth } from "@/lib/firebase";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 function Navbar() {
+  const { user } = useUserAuth();
+
+  useEffect(() => {
+    const checkUserLoggedIn = async () => {
+      if (user) {
+        console.log("Logged IN");
+        // If the user is logged in, call loadWeather to fetch weather data
+      } else {
+        // Handle the case where the user is not logged in
+        console.log("User is not logged in");
+      }
+    };
+
+    checkUserLoggedIn(); // Call the function to check user login status
+  }, [user]);
+
   return (
-    <div className="w-full h-36 bg-navbar flex shadow-lg">
-      <div className="flex m-4 absolute left-10 ">
-        <Link href={"/"}>
-          <Image
-            src={"/logo_EP.png"}
-            width={120}
-            height={120}
-            alt="Logo"
-          ></Image>
-        </Link>
-        {/* <span className='mt-9 ml-5'>
-                Electrical Pros
-            </span> */}
-      </div>
-      <div className="flex absolute right-20 m-12">
-        <ul className="flex gap-10">
+    <header className="bg-gray-900 p-4">
+      <nav className="flex justify-between items-center">
+        <div className="text-white text-2xl font-bold">Electrical-Pros</div>
+        <ul className="flex space-x-6 items-center text-white">
           <li>
-            <Link href={"/"} className="font-thin text-2xl">
-              Home
-            </Link>
+            <Link href={"/index"}>Home</Link>
           </li>
           <li>
-            <Link href={"/about"} className="font-thin text-2xl">
-              About
-            </Link>
+            <Link href={"/Services"}>Services</Link>
           </li>
           <li>
-            <Link href={"/Services"} className="font-thin text-2xl">
-              Services
-            </Link>
+            <Link href={"/about"}>About</Link>
           </li>
           <li>
-            <Link href={"/ContactUs"} className="font-thin text-2xl">
-              Contact Us
-            </Link>
+            <Link href={"/ContactUs"}>Contact Us</Link>
+
           </li>
+
           <li>
-            <Link href={"/appointment"} className="font-thin text-2xl">
-              Appointment
+
+            <Link href={"/search"}>
+              {/* <Image src={"/search.png"} width={20} height={20} alt="Search" /> */}
+
+              <svg
+                class="svg-icon search-icon size-6"
+                aria-labelledby="title desc"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 19.9 19.7"
+              >
+                <title id="title">Search Icon</title>
+                <desc id="desc">A magnifying glass icon.</desc>
+                <g class="search-path" fill="none" stroke="#848F91">
+                  <path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4" />
+                  <circle cx="8" cy="8" r="7" />
+                </g>
+              </svg>
+
             </Link>
           </li>
           {auth.currentUser ? (

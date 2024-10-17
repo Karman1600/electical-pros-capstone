@@ -1,44 +1,76 @@
-"use server"
+"use server";
 
-import { bookAppointmentInDB, checkAppointmentFromDB } from "@/lib/firestoreFunctions";
+import {
+  bookAppointmentInDB,
+  checkAppointmentFromDB,
+} from "@/lib/firestoreFunctions";
+import { Timestamp } from "firebase/firestore";
 
 export async function checkAppointment(formData) {
-    const name = formData.name
-    const email = formData.email
-    const date = formData.date
+  const name = formData.name;
+  const email = formData.email;
+  const date = formData.date;
+  const time = formData.time;
 
-    const dt = new Date(date)
+  const dt = new Date(date);
 
-    const utcTime = dt.getTime()
-    const currentOffset = dt.getTimezoneOffset()/60;
-    const newTime = new Date(utcTime + (-6 - currentOffset) * 60 * 60 * 1000 )
+  dt.setHours(time);
+  dt.setMinutes("00");
 
-    console.log(newTime)
+  // const utcTime = dt.getTime()
+  // const currentOffset = dt.getTimezoneOffset()/60;
+  // const newTime = new Date(utcTime + (-6 - currentOffset) * 60 * 60 * 1000 )
 
-    const response = await checkAppointmentFromDB(dt);
+  // console.log(newTime)
 
-    if(response == false){
-        return {message: "Not available"}
-    }else if(response == true){
-        return {message: "Available"}
-    }
+  const timestamp = Timestamp.fromDate(dt);
+  const data = {
+    name: name,
+    email: email,
+    appointmentDate: timestamp,
+  };
+
+  const response = await checkAppointmentFromDB(data);
+
+  if (response == false) {
+    return { message: "Not available" , color: false };
+  } else if (response == true) {
+    return { message: "Available" , color: true};
+  }
 }
 
-export async function bookAppointment(date) {
-    const dt = new Date(date)
+export async function bookAppointment(formData) {
+  const name = formData.name;
+  const email = formData.email;
+  const date = formData.date;
+  const time = formData.time;
+  const dt = new Date(date);
 
-    const utcTime = dt.getTime()
-    const currentOffset = dt.getTimezoneOffset()/60;
-    const newTime = new Date(utcTime + (-6 - currentOffset) * 60 * 60 * 1000 )
+  dt.setHours(time);
+  dt.setMinutes("00");
 
-    try{
+  console.log(date, dt);
 
-        const response = await bookAppointmentInDB(newTime);
-        console.log(response)
-    }catch(err){
-        return err;
-    }
+  const utcTime = dt.getTime();
+  const currentOffset = dt.getTimezoneOffset() / 60;
+  const newTime = new Date(utcTime + (-6 - currentOffset) * 60 * 60 * 1000);
 
-    return true;
+  const timestamp = Timestamp.fromDate(dt);
+  const data = {
+    name: name,
+    email: email,
+    appointmentDate: timestamp,
+  };
+
+  console.log(timestamp.toString());
+  console.log(dt.toString());
+
+  try {
+    const response = await bookAppointmentInDB(data);
+    return {response, status: true};
+
+  } catch (err) {
+    return err;
+  }
 
 }

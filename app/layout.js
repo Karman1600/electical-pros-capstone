@@ -2,7 +2,9 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
-import Footer from "./_components/Footer"; // Import Footer component
+
+import { AuthContextProvider } from "@/lib/auth-context";
+
 
 // Define custom fonts
 const geistSans = localFont({
@@ -25,6 +27,7 @@ export const metadata = {
 // RootLayout function
 export default function RootLayout({ children }) {
   return (
+
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
@@ -39,5 +42,17 @@ export default function RootLayout({ children }) {
         <Footer />
       </body>
     </html>
+
+    <AuthContextProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <Navbar />
+          {children}
+        </body>
+      </html>
+    </AuthContextProvider>
+
   );
 }

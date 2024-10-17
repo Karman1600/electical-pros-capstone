@@ -1,44 +1,69 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 
-function Services() {
+function ServicesPage() {
   return (
-    <div className="font-sans text-gray-800 bg-[#d4d1bb] p-5">
-      {/* Services Section */}
-      <section className="max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-md text-center">
-        <h1 className="text-4xl font-bold mb-5 text-gray-800">Our Services</h1>
+    <div className="font-sans text-gray-800 bg-[#f9f9f9] p-5">
+      <section className="max-w-5xl mx-auto p-10 bg-white rounded-lg shadow-md text-center">
+        <h1 className="text-4xl font-bold mb-5 text-gray-800">Services</h1>
         <p className="text-lg leading-8 mb-4">
-          We offer a comprehensive range of professional services tailored to meet the unique needs of each client. Our expertise spans from consulting to hands-on project implementation, ensuring your electrical systems are both robust and efficient.
+          Our electrical consultancy services offer a range of expert solutions to meet your specific electrical needs.
         </p>
       </section>
 
-      {/* Service Details */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 max-w-5xl mx-auto">
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Consulting Services</h2>
+
+          <h2 className="text-3xl font-bold mb-3">
+            <Link href="/Services/electrical-installations">Electrical Installations & Upgrades</Link>
+          </h2>
           <p className="text-lg leading-8">
-            Our consulting services are designed to help clients in the oil and gas industry navigate complex challenges and achieve operational excellence. We provide strategic advice, technical expertise, and innovative solutions tailored to meet specific needs.
+            We specialize in wiring, panels, lighting, and appliance installations for both homes and businesses.
+
           </p>
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Solution Design</h2>
+
+          <h2 className="text-3xl font-bold mb-3">
+            <Link href="/Services/Safety-inspection">Electrical Safety Inspections</Link>
+          </h2>
           <p className="text-lg leading-8">
-            We specialize in designing electrical systems for commercial, residential, and industrial buildings, as well as public infrastructure. Our solutions are crafted to ensure efficiency and sustainability.
+            We provide comprehensive inspections to ensure compliance with safety codes and identify potential hazards.
+
           </p>
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Electrical Engineering Drawing</h2>
+
+          <h2 className="text-3xl font-bold mb-3">Home Automation & Smart Systems</h2>
           <p className="text-lg leading-8">
-            We provide detailed engineering drawings essential for the efficient setup, maintenance, and operation of electrical systems, ensuring safety and compliance with industry standards.
+            Enhance your lifestyle with smart lighting, security, and energy management systems.
+
           </p>
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Maintenance Services</h2>
+
+          <h2 className="text-3xl font-bold mb-3">Surge Protection & Backup Generators</h2>
           <p className="text-lg leading-8">
-            Our maintenance services ensure that your electrical systems operate efficiently and safely. We offer both regular and corrective maintenance to address potential issues proactively.
+            Protect your home and business from power surges and ensure backup power during outages.
+          </p>
+        </div>
+        
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-3">Lighting Design & Installation</h2>
+          <p className="text-lg leading-8">
+            Enhance the aesthetics and functionality of your space with tailored indoor and outdoor lighting solutions.
+          </p>
+        </div>
+
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-3">EV Charger Installation</h2>
+          <p className="text-lg leading-8">
+            We install electric vehicle charging stations for both residential and commercial properties.
+
           </p>
         </div>
       </div>
@@ -46,4 +71,4 @@ function Services() {
   );
 }
 
-export default Services;
+export default ServicesPage;
