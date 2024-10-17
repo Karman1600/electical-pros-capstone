@@ -38,6 +38,7 @@ function Navbar() {
           </li>
           <li>
             <Link href={"/ContactUs"}>Contact Us</Link>
+
           </li>
 
           <li>
@@ -59,31 +60,28 @@ function Navbar() {
                   <circle cx="8" cy="8" r="7" />
                 </g>
               </svg>
+
             </Link>
           </li>
-
           {auth.currentUser ? (
-            <li>
-              <Link
-                href={"/dashboard"}
-                className="px-4 py-2 text-gray-900 bg-white rounded-md hover:bg-gray-100"
-              >
+            <li className="mt-1">
+              <Link href={"/dashboard"} className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50">
                 Dashboard
               </Link>
             </li>
           ) : (
-            <li>
+            <li className="mt-1">
               <Link
                 href={"/sign-in"}
-                className="px-4 py-2 text-gray-900 bg-white rounded-md hover:bg-gray-100"
+                className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50"
               >
                 Sign In
               </Link>
             </li>
           )}
         </ul>
-      </nav>
-    </header>
+      </div>
+    </div>
   );
 }
 
