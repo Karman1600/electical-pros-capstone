@@ -3,51 +3,69 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const NavBar = () => {
+function Navbar() {
   return (
-    <header className="bg-gray-900 p-4">
-      <nav className="flex justify-between items-center">
-        <div className="text-white text-2xl font-bold">Electrical-Pros</div>
-        <ul className="flex space-x-6 items-center text-white">
-          <li><Link href={"/index"}>Home</Link></li>
-          <li><Link href={"/Services"}>Services</Link></li>
-          <li><Link href={"/about"}>About</Link></li>
-          <li><Link href={"/ContactUs"}>Contact Us</Link></li>
-          
+    <div className="w-full h-36 bg-navbar flex shadow-lg">
+      <div className="flex m-4 absolute left-10 ">
+        <Link href={"/"}>
+          <Image
+            src={"/logo_EP.png"}
+            width={120}
+            height={120}
+            alt="Logo"
+          ></Image>
+        </Link>
+        {/* <span className='mt-9 ml-5'>
+                Electrical Pros
+            </span> */}
+      </div>
+      <div className="flex absolute right-20 m-12">
+        <ul className="flex gap-10">
           <li>
-            <Link href={"/sign-in"}>
-              <Image src={"/profile.png"} width={50} height={50} alt="Profile" className="rounded-full"/>
+            <Link href={"/"} className="font-thin text-2xl">
+              Home
             </Link>
           </li>
           <li>
-            <Link href={"/search"}>
-              <Image src={"/search.png"} width={20} height={20} alt="Search" />
+            <Link href={"/about"} className="font-thin text-2xl">
+              About
             </Link>
           </li>
-
+          <li>
+            <Link href={"/Services"} className="font-thin text-2xl">
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link href={"/ContactUs"} className="font-thin text-2xl">
+              Contact Us
+            </Link>
+          </li>
+          <li>
+            <Link href={"/appointment"} className="font-thin text-2xl">
+              Appointment
+            </Link>
+          </li>
           {auth.currentUser ? (
-            <li>
-              <Link
-                href={"/dashboard"}
-                className="px-4 py-2 text-gray-900 bg-white rounded-md hover:bg-gray-100"
-              >
+            <li className="mt-1">
+              <Link href={"/dashboard"} className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50">
                 Dashboard
               </Link>
             </li>
           ) : (
-            <li>
+            <li className="mt-1">
               <Link
                 href={"/sign-in"}
-                className="px-4 py-2 text-gray-900 bg-white rounded-md hover:bg-gray-100"
+                className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50"
               >
                 Sign In
               </Link>
             </li>
           )}
         </ul>
-      </nav>
-    </header>
+      </div>
+    </div>
   );
-};
+}
 
-export default NavBar;
+export default Navbar;

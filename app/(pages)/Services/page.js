@@ -15,58 +15,30 @@ function Services() {
       {/* Service Details */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Commercial Electrical Design</h2>
+          <h2 className="text-3xl font-bold mb-3">Consulting Services</h2>
           <p className="text-lg leading-8">
-            Complete electrical design for commercial buildings, ensuring all systems are efficient and up to modern standards.
+            Our consulting services are designed to help clients in the oil and gas industry navigate complex challenges and achieve operational excellence. We provide strategic advice, technical expertise, and innovative solutions tailored to meet specific needs.
           </p>
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Residential Electrical Installation</h2>
+          <h2 className="text-3xl font-bold mb-3">Solution Design</h2>
           <p className="text-lg leading-8">
-            Electrical installation services for residential complexes, focusing on safety, efficiency, and sustainability.
+            We specialize in designing electrical systems for commercial, residential, and industrial buildings, as well as public infrastructure. Our solutions are crafted to ensure efficiency and sustainability.
           </p>
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Industrial Power Systems</h2>
+          <h2 className="text-3xl font-bold mb-3">Electrical Engineering Drawing</h2>
           <p className="text-lg leading-8">
-            Comprehensive power system design for industrial sites, providing robust and scalable solutions.
+            We provide detailed engineering drawings essential for the efficient setup, maintenance, and operation of electrical systems, ensuring safety and compliance with industry standards.
           </p>
         </div>
 
         <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Home Electrical Repairs</h2>
+          <h2 className="text-3xl font-bold mb-3">Maintenance Services</h2>
           <p className="text-lg leading-8">
-            Repair and maintenance of electrical systems in homes, ensuring safety and longevity.
-          </p>
-        </div>
-
-        <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Factory Power Distribution</h2>
-          <p className="text-lg leading-8">
-            Electrical distribution system setup for factories, optimizing for reliability and energy efficiency.
-          </p>
-        </div>
-
-        <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Electrical System Consultation</h2>
-          <p className="text-lg leading-8">
-            Consultation services for complex electrical systems, offering expert advice and solutions.
-          </p>
-        </div>
-
-        <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Smart Home Wiring</h2>
-          <p className="text-lg leading-8">
-            Setup of smart home wiring and IoT devices for modern, connected living spaces.
-          </p>
-        </div>
-
-        <div className="bg-white p-5 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-3">Solar Panel Installation</h2>
-          <p className="text-lg leading-8">
-            Installation and maintenance of industrial-scale solar panels for sustainable energy solutions.
+            Our maintenance services ensure that your electrical systems operate efficiently and safely. We offer both regular and corrective maintenance to address potential issues proactively.
           </p>
         </div>
       </div>
