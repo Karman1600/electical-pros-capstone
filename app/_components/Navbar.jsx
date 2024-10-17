@@ -19,7 +19,7 @@ function Navbar() {
       }
     };
 
-    checkUserLoggedIn(); // Call the function to check user login status
+    checkUserLoggedIn();
   }, [user]);
 
   return (
