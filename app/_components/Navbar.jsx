@@ -38,16 +38,11 @@ function Navbar() {
           </li>
           <li>
             <Link href={"/ContactUs"}>Contact Us</Link>
-
           </li>
-
           <li>
-
             <Link href={"/search"}>
-              {/* <Image src={"/search.png"} width={20} height={20} alt="Search" /> */}
-
               <svg
-                class="svg-icon search-icon size-6"
+                className="svg-icon search-icon size-6" // Changed class to className
                 aria-labelledby="title desc"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
@@ -55,17 +50,19 @@ function Navbar() {
               >
                 <title id="title">Search Icon</title>
                 <desc id="desc">A magnifying glass icon.</desc>
-                <g class="search-path" fill="none" stroke="#848F91">
-                  <path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4" />
+                <g className="search-path" fill="none" stroke="#848F91"> {/* Changed class to className */}
+                  <path strokeLinecap="square" d="M18.5 18.3l-5.4-5.4" />
                   <circle cx="8" cy="8" r="7" />
                 </g>
               </svg>
-
             </Link>
           </li>
           {auth.currentUser ? (
             <li className="mt-1">
-              <Link href={"/dashboard"} className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50">
+              <Link
+                href={"/dashboard"}
+                className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50"
+              >
                 Dashboard
               </Link>
             </li>
@@ -80,8 +77,8 @@ function Navbar() {
             </li>
           )}
         </ul>
-      </div>
-    </div>
+      </nav> 
+    </header> 
   );
 }
 
