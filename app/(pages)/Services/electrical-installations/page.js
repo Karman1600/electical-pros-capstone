@@ -20,6 +20,7 @@ function ElectricalInstallations() {
     soundSystem: 120,
   };
 
+  //to handle the estimates
   const handleEstimate = (event) => {
     event.preventDefault();
 
@@ -65,7 +66,8 @@ function ElectricalInstallations() {
             <label className="block text-lg mb-2">Select Plan</label>
             <select
               value={plan}
-              onChange={(e) => setPlan(e.target.value)}
+              onChange={(e) => {setPlan(e.target.value);
+                                setEstimate(null)}}
               className="border p-2 w-full rounded"
             >
               <option value="basic">Basic Plan (Essential Appliances)</option>
@@ -108,13 +110,15 @@ function ElectricalInstallations() {
           <div className="mb-4">
             <label className="block text-lg mb-2">Area of the House (in square meters)</label>
             <input
-              type="number"
-              value={inputValues.area}
-              onChange={(e) =>
-                setInputValues({ ...inputValues, area: parseInt(e.target.value) })
-              }
-              className="border p-2 w-full rounded"
-              required
+            type="number"
+            value={inputValues.area}
+            min={0}
+            onChange={(e) => {
+                const value = Math.max(0, parseInt(e.target.value, 10) || 0);
+                setInputValues({ ...inputValues, area: value });
+            }}
+            className="border p-2 w-full rounded"
+            required
             />
           </div>
 
