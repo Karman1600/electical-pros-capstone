@@ -70,6 +70,7 @@ function SafetyInspection() {
                         <label className="block text-lg mb-2">Area of the House (in square meters)</label>
                         <input
                             type="number"
+                            min={0}
                             value={inputValues.area}
                             onChange={(e) => setInputValues({ ...inputValues, area: e.target.value })}
                             className="border p-2 w-full rounded"
