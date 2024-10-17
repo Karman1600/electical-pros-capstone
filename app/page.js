@@ -5,8 +5,6 @@ import React from 'react';
 function Home() {
   return (
     <>
-      
-
       <section id="home" className="hero">
         <div className="hero-content">
           <h1>Expert Electrical Consulting</h1>
