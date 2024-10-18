@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import Modes from './modes'; // Updated import for modes.jsx
+import Modes from './modes'; 
 
 function Footer() {
   return (

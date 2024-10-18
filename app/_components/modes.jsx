@@ -1,7 +1,6 @@
-"use client"; // Ensure this component is client-side
-
+"use client"; 
 import React, { useContext } from 'react';
-import { ThemeContext } from '../context/themes'; // Ensure this path is correct
+import { ThemeContext } from '../context/themes';
 
 const Mode = () => {
   const { mode, setMode } = useContext(ThemeContext);

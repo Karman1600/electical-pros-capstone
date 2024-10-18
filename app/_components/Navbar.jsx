@@ -1,8 +1,8 @@
-"use client"; // Ensure the component is client-side
+"use client"; 
 
 import Link from "next/link";
 import React, { useEffect } from "react";
-import Modes from './modes'; // Adjusted import for modes.jsx
+import Modes from './modes'; 
 import { useUserAuth } from "@/lib/auth-context";
 import { auth } from "@/lib/firebase";
 

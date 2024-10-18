@@ -1,10 +1,10 @@
-// app/page.js
+"use client"
 import React, { useContext } from "react";
 import Image from "next/image";
-import { ThemeContext } from './context/themes'; // Ensure this path is correct
+import { ThemeContext } from './context/themes'; 
 
 export default function Home() {
-  const { mode } = useContext(ThemeContext); // Get the current theme mode
+  const { mode } = useContext(ThemeContext); 
 
   return (
     <main className={`flex flex-col min-h-screen ${mode === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
@@ -34,7 +34,7 @@ export default function Home() {
             forward.
           </p>
           <Image
-            src="/home_image.png" // Ensure this path is correct
+            src="/home_image.png" 
             alt="Electrical Consultancy"
             width={600}
             height={400}

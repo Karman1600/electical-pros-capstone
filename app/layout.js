@@ -5,9 +5,8 @@ import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer"; 
 import { AuthContextProvider } from "@/lib/auth-context";
-import { ThemeProvider } from "@/context/themes"; // Import the ThemeProvider
+import { ThemeProvider } from "@/context/themes"; 
 
-// Define custom fonts
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -19,7 +18,6 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// RootLayout function
 export default function RootLayout({ children }) {
   return (
     <AuthContextProvider>

@@ -95,7 +95,7 @@ export default function Recommendations() {
         </div>
 
         <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded-lg">
-          Get Recommendations
+          Get Recommendations for your services
         </button>
       </form>
 
