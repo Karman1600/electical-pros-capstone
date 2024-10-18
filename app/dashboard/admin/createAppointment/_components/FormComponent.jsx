@@ -8,6 +8,7 @@ const FormComponent = ({ userOptions }) => {
     email: "",
     date: "",
     time: "",
+    uid: "",
   });
 
   const router = useRouter()
@@ -21,11 +22,14 @@ const FormComponent = ({ userOptions }) => {
 
     // If the name field is changed, automatically set the corresponding email
     if (name === 'name') {
-      const selectedUser = userOptions.find((user) => user.name === value);
-      if (selectedUser) {
+      const selectedUser = userOptions.map((user) => user.find((innerUser)=>innerUser.name === value));
+      const newUser = selectedUser.filter((user)=> user != undefined)[0]
+      console.log(newUser)
+      if (newUser) {
         setFormData((prevData) => ({
           ...prevData,
-          email: selectedUser.email,
+          email: newUser.email,
+          uid: newUser.userID
         }));
       } else {
         setFormData((prevData) => ({
@@ -39,8 +43,7 @@ const FormComponent = ({ userOptions }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    const response = await bookAppointment({name: formData.name, email: formData.email, date: formData.date, time: formData.time});
-    console.log(response);
+    const response = await bookAppointment({name: formData.name, email: formData.email, date: formData.date, time: formData.time}, formData.uid);
     response.status? router.push("/dashboard/admin") : ""
   };
 
@@ -67,7 +70,7 @@ const FormComponent = ({ userOptions }) => {
         />
         <datalist id="nameOptions">
         {userOptions.map((user, index) => (
-            <option key={index} value={user.name} />
+            <option key={index} value={user[0]?.name} />
           ))}
         </datalist>
       </div>

@@ -39,7 +39,7 @@ export async function checkAppointment(formData) {
   }
 }
 
-export async function bookAppointment(formData) {
+export async function bookAppointment(formData, uid) {
   const name = formData.name;
   const email = formData.email;
   const date = formData.date;
@@ -66,7 +66,7 @@ export async function bookAppointment(formData) {
   console.log(dt.toString());
 
   try {
-    const response = await bookAppointmentInDB(data);
+    const response = await bookAppointmentInDB(data, uid);
     return {response, status: true};
 
   } catch (err) {

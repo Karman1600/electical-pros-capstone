@@ -1,5 +1,5 @@
 'use client';  // This marks the component as a client-side component
-
+/*ref= google for developers( only for geolocation)*/
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import Link from 'next/link'; // Importing Next.js Link component
