@@ -1,15 +1,14 @@
-// Import Mailjet and connect using environment variables
 const mailjet = require('node-mailjet').connect(
-  process.env.MAILJET_API_KEY, 
-  process.env.MAILJET_API_SECRET
+  '7f4d8792832c55984379910d38dc42',  // Your Mailjet API Key
+  'bc36e99fdOcba47b60a90f8962b64a07'  // Your Mailjet API Secret
 );
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { name, email, message } = req.body;
+    const { fullName, email, message } = req.body;
 
     // Basic input validation
-    if (!name || !email || !message) {
+    if (!fullName || !email || !message) {
       return res.status(400).json({ success: false, message: 'All fields are required.' });
     }
 
@@ -19,18 +18,18 @@ export default async function handler(req, res) {
         Messages: [
           {
             From: {
-              Email: 'navrajmauhar1@gmail.com', // Your Mailjet email address
-              Name: 'Navraj Mauhar', // Your name
+              Email: 'your-email@example.com', // Your Mailjet email address
+              Name: 'Your Name', // Your name
             },
             To: [
               {
                 Email: email, // User's email from the form
-                Name: name,   // User's name from the form
+                Name: fullName,   // User's name from the form
               },
             ],
-            Subject: `New message from ${name}`,
+            Subject: `New message from ${fullName}`,
             TextPart: message,
-            HTMLPart: `<h3>New message from ${name}</h3><p>${message}</p><p>Email: ${email}</p>`,
+            HTMLPart: `<h3>New message from ${fullName}</h3><p>${message}</p><p>Email: ${email}</p>`,
           },
         ],
       });
@@ -40,12 +39,8 @@ export default async function handler(req, res) {
       console.log('Email sent successfully:', result.body);
       return res.status(200).json({ success: true });
     } catch (error) {
-      console.error('Mailjet error:', {
-        statusCode: error.statusCode,
-        message: error.message,
-        response: error.response?.body,
-      });
-      return res.status(500).json({ success: false, message: 'Failed to send email.', error: error.message });
+      console.error('Mailjet error:', error);
+      return res.status(500).json({ success: false, message: 'Failed to send email.' });
     }
   } else {
     res.setHeader('Allow', ['POST']);

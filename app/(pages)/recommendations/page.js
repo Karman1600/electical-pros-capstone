@@ -56,11 +56,11 @@ export default function Recommendations() {
 
   return (
     <div className="p-10 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-bold text-center mb-8">Service Recommendations</h1>
+      <h1 className="text-4xl font-bold text-center mb-8 text-black">Service Recommendations</h1>
       
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
         <div className="mb-4">
-          <label className="block text-lg font-semibold mb-2" htmlFor="budget">Budget ($):</label>
+          <label className="block text-lg font-semibold mb-2 text-black" htmlFor="budget">Budget ($):</label>
           <input
             type="number"
             id="budget"
@@ -72,7 +72,7 @@ export default function Recommendations() {
         </div>
         
         <div className="mb-4">
-          <label className="block text-lg font-semibold mb-2" htmlFor="area">Area (sq ft):</label>
+          <label className="block text-lg font-semibold mb-2 text-black" htmlFor="area">Area (sq ft):</label>
           <input
             type="number"
             id="area"
@@ -84,14 +84,14 @@ export default function Recommendations() {
         </div>
 
         <div className="mb-4">
-          <label className="block text-lg font-semibold mb-2">Is the property commercial?</label>
+          <label className="block text-lg font-semibold mb-2 text-black">Is the property commercial?</label>
           <input
             type="checkbox"
             checked={isCommercial}
             onChange={(e) => setIsCommercial(e.target.checked)}
             className="mr-2"
           />
-          <span>Yes</span>
+          <span className="text-black">Yes</span>
         </div>
 
         <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded-lg">
@@ -102,20 +102,21 @@ export default function Recommendations() {
       <div className="mt-10">
         {filteredServices.length > 0 ? (
           <div>
-            <h2 className="text-2xl font-semibold text-center mb-6">Recommended Services</h2>
+            <h2 className="text-2xl font-semibold text-center mb-6 text-black">Recommended Services</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredServices.map((service) => (
                 <div key={service.id} className="bg-white p-5 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold">{service.name}</h3>
-                  <p className="text-gray-700">{service.description}</p>
+                  <h3 className="text-xl font-bold text-black">{service.name}</h3>
+                  <p className="text-black">{service.description}</p>
                 </div>
               ))}
             </div>
           </div>
         ) : (
-          <p className="text-center text-lg">No services match your criteria.</p>
+          <p className="text-center text-lg text-black">No services match your criteria.</p>
         )}
       </div>
     </div>
   );
 }
+git
