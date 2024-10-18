@@ -1,4 +1,5 @@
-// app/layout.js
+"use client";
+import React, { useContext } from 'react';
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
@@ -17,12 +18,6 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
-// Metadata
-export const metadata = {
-  title: "Electrical Pros",
-  description: "Professional electrical consultancy services",
-};
 
 // RootLayout function
 export default function RootLayout({ children }) {
