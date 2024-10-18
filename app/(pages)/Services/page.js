@@ -77,7 +77,6 @@ function ServicesPage() {
               and commercial properties.
             </p>
           </div>
-
         </div>
       </div>
     </div>
