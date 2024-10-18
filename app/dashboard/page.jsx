@@ -28,7 +28,7 @@ function page() {
       appointmentDate: Timestamp.fromDate(data).toJSON(),
     };
 
-    const response = await deleteCurrentAppointment(finalData);
+    const response = await deleteCurrentAppointment(user?.uid);
 
     if (response) {
       setNoAppointment(true)
@@ -45,7 +45,7 @@ function page() {
           router.push("/dashboard/admin")
         }
 
-        const data = await fetchAppointmentDate(user.email);
+        const data = await fetchAppointmentDate(user?.uid);
         const times = [];
         if (data) {
           data.map((time) => {

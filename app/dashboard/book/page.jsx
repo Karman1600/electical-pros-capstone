@@ -1,7 +1,6 @@
 "use client";
 import { bookAppointment, checkAppointment } from "@/actions/appointment";
 import { useUserAuth } from "@/lib/auth-context";
-import { auth } from "@/lib/firebase";
 import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -17,6 +16,9 @@ function page() {
     date: "",
     time: "08"
   });
+
+  const { user } = useUserAuth();
+
 
   const setCurrentDate = () => {
     const dtToday = new Date();
@@ -40,7 +42,6 @@ function page() {
     try {
       // Assuming checkAppointment is an async function that checks availability
       const response = await checkAppointment(formData);
-      console.log(response);
       setStatus(true);
       setMessage(response);
     } catch (error) {
@@ -50,7 +51,7 @@ function page() {
   };
 
   const handleBookAppointemnt = async () => {
-    const response = await bookAppointment({name: user.displayName, email: user.email, date: formData.date, time: formData.time});
+    const response = await bookAppointment({name: user.displayName, email: user.email, date: formData.date, time: formData.time}, user?.uid);
     console.log(response);
 
     response.status ? setMessage(response?.response) : "";
@@ -69,7 +70,6 @@ function page() {
 
   };
 
-  const { user } = useUserAuth();
   
   useEffect(() => {
       const checkUserLoggedIn = async () => {
