@@ -1,9 +1,10 @@
-"use client";
-import { useUserAuth } from "@/lib/auth-context";
-import { auth } from "@/lib/firebase";
-import Image from "next/image";
+"use client"; // Ensure the component is client-side
+
 import Link from "next/link";
 import React, { useEffect } from "react";
+import Modes from './modes'; // Adjusted import for modes.jsx
+import { useUserAuth } from "@/lib/auth-context";
+import { auth } from "@/lib/firebase";
 
 function Navbar() {
   const { user } = useUserAuth();
@@ -73,6 +74,8 @@ function Navbar() {
             </Link>
           </li>
         )}
+        {/* Add the mode toggle button */}
+        <Modes />
       </ul>
     </nav>
   );

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
+import { ThemeContext } from "@/context/themes"; // Adjust the path to match your structure
 
 export default function Home() {
+  const { mode } = useContext(ThemeContext); // Get the current theme mode
+
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className={`flex flex-col min-h-screen ${mode === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       {/* Main content */}
       <div className="flex-grow">
         <section className="text-center py-10">
