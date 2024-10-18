@@ -1,4 +1,4 @@
-"use client"; 
+"use client"
 import React, { useState } from 'react';
 
 function ContactUs() {
@@ -7,10 +7,29 @@ function ContactUs() {
   const [message, setMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (fullName && email && message) {
-      setIsSubmitted(true);
+      try {
+        const response = await fetch('/api/sendEmail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ fullName, email, message }),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          setIsSubmitted(true); // Show success popup
+        } else {
+          alert('Failed to send message.');
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('An error occurred while submitting the form.');
+      }
     } else {
       alert('Please fill out all fields.');
     }
