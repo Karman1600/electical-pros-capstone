@@ -1,14 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import Navbar from "./_components/Navbar";
-import Footer from "./_components/Footer"; // Import Footer component
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
-      {/* Navbar */}
-      <Navbar />
-
       {/* Main content */}
       <div className="flex-grow">
         <section className="text-center py-10">
@@ -45,9 +40,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-
-      {/* Footer */}
-      <Footer />
     </main>
   );
 }

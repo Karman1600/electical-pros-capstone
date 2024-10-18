@@ -8,17 +8,17 @@ function Footer() {
         {/* Footer navigation links */}
         <ul className="flex gap-6 mb-4">
           <li>
-            <Link href="/recommendations" className="text-white hover:text-gray-400">
+            <Link href="/recommendations" className="text-black !text-black hover:!text-gray-700">
               Recommendations
             </Link>
-          </li>
-          <li>
           </li>
         </ul>
 
         {/* Copyright */}
         <div className="text-center">
-          <p>&copy; {new Date().getFullYear()} Electrical Pros. All rights reserved.</p>
+          <p className="text-black !text-black">
+            &copy; {new Date().getFullYear()} Electrical Pros. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
