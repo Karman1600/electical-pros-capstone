@@ -3,8 +3,8 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Modes from './modes'; 
-import { useUserAuth } from "@/app/lib/auth-context";
-import { auth } from "@/app/lib/firebase";
+import { useUserAuth } from "@/lib/auth-context";
+import { auth } from "@/lib/firebase";
 
 function Navbar() {
   const { user } = useUserAuth();
