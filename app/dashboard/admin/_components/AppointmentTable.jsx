@@ -2,7 +2,7 @@
 import {
   deleteCurrentAppointment,
   fetchAllUsers,
-} from "@/lib/firestoreFunctions";
+} from "@/app/lib/firestoreFunctions";
 import { redirect, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";

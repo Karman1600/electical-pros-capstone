@@ -1,6 +1,6 @@
 "use client"
 import { Login } from '@/actions/authServer'
-import { useUserAuth } from '@/lib/auth-context'
+import { useUserAuth } from '@/app/lib/auth-context'
 import Link from 'next/link'
 import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'

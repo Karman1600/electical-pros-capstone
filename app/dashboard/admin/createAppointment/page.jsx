@@ -1,5 +1,5 @@
 "use client"
-import { fetchAllUsers } from '@/lib/firestoreFunctions'
+import { fetchAllUsers } from '@/app/lib/firestoreFunctions'
 import React, { useEffect, useState } from 'react'
 import FormComponent from './_components/FormComponent';
 

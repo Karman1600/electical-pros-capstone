@@ -1,6 +1,6 @@
 const mailjet = require('node-mailjet').connect(
-  '7f4d8792832c55984379910d38dc42',  // Your Mailjet API Key
-  'bc36e99fdOcba47b60a90f8962b64a07'  // Your Mailjet API Secret
+  '7f4d8792832c55984379910d38dc42',  
+  'bc36e99fdOcba47b60a90f8962b64a07' 
 );
 
 export default async function handler(req, res) {

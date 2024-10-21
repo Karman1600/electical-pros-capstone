@@ -22,7 +22,7 @@ function ContactUs() {
         const data = await response.json();
 
         if (data.success) {
-          setIsSubmitted(true); // Show success popup
+          setIsSubmitted(true); 
         } else {
           alert('Failed to send message.');
         }
@@ -119,7 +119,7 @@ function ContactUs() {
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
               <div className="bg-white p-6 rounded-lg shadow-lg space-y-4 text-center">
                 <h2 className="text-2xl font-semibold">Message Sent</h2>
-                <p>Your message has been successfully sent!</p>
+                <p>Your message has been successfully sent! Thank You</p>
                 <button 
                   onClick={closePopup} 
                   className="bg-indigo-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
