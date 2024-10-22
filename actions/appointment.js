@@ -3,7 +3,7 @@
 import {
   bookAppointmentInDB,
   checkAppointmentFromDB,
-} from "@/lib/firestoreFunctions";
+} from "@/app/lib/firestoreFunctions";
 import { Timestamp } from "firebase/firestore";
 
 export async function checkAppointment(formData) {

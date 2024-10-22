@@ -1,6 +1,6 @@
 const mailjet = require('node-mailjet').connect(
-  '7f4d8792832c55984379910d38dc42',  // Your Mailjet API Key
-  'bc36e99fdOcba47b60a90f8962b64a07'  // Your Mailjet API Secret
+  '7f4d8792832c55984379910d38dc42',
+  'bc36e99fdOcba47b60a90f8962b64a07'
 );
 
 export default async function handler(req, res) {
@@ -18,13 +18,13 @@ export default async function handler(req, res) {
         Messages: [
           {
             From: {
-              Email: 'your-email@example.com', // Your Mailjet email address
-              Name: 'Your Name', // Your name
+              Email: 'navrajmauhar1@gmail.com',
+              Name: 'Navrajveer Kaur',
             },
             To: [
               {
                 Email: email, // User's email from the form
-                Name: fullName,   // User's name from the form
+                Name: fullName, // User's name from the form
               },
             ],
             Subject: `New message from ${fullName}`,
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       });
 
     try {
-      const result = await request; // Await the request to Mailjet
+      const result = await request;
       console.log('Email sent successfully:', result.body);
       return res.status(200).json({ success: true });
     } catch (error) {

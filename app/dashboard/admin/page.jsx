@@ -1,6 +1,6 @@
 "use client";
-import { useUserAuth } from "@/lib/auth-context";
-import { getUserRole } from "@/lib/authUtilities";
+import { useUserAuth } from "@/app/lib/auth-context";
+import { getUserRole } from "@/app/lib/authUtilities";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import AppointmentTable from "./_components/AppointmentTable";

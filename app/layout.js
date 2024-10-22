@@ -3,9 +3,9 @@ import React, { useContext } from 'react';
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
-import Footer from "./_components/Footer"; 
-import { AuthContextProvider } from "@/lib/auth-context";
-import { ThemeProvider } from "@/context/themes"; 
+import Footer from "./_components/footer"; 
+import  { AuthContextProvider } from "@/lib/auth-context.js";
+import { ThemeProvider } from "./context/themes"; 
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,7 +21,7 @@ const geistMono = localFont({
 export default function RootLayout({ children }) {
   return (
     <AuthContextProvider>
-      <ThemeProvider> {/* Wrap children with ThemeProvider */}
+      <ThemeProvider> 
         <html lang="en">
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
             <Navbar />
