@@ -1,4 +1,4 @@
-import { Register } from '@/actions/authServer'
+import { Register } from '@/app/actions/authServer'
 import Link from 'next/link'
 
 export default function SignUp() {

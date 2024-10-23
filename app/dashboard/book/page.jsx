@@ -1,5 +1,5 @@
 "use client";
-import { bookAppointment, checkAppointment } from "@/actions/appointment";
+import { bookAppointment, checkAppointment } from "@/app/actions/appointment";
 import { useUserAuth } from "@/app/lib/auth-context";
 import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";

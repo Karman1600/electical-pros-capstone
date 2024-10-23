@@ -1,4 +1,4 @@
-import { bookAppointment } from "@/actions/appointment";
+import { bookAppointment } from "@/app/actions/appointment";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
