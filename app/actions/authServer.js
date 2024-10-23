@@ -1,6 +1,6 @@
 "use server"
 
-import { loginUser, logOutUser, registerUser } from '@/app/lib/authUtilities'
+import { loginUser, logOutUser, registerUser } from '@/lib/authUtilities'
 import { redirect } from 'next/navigation'
 
 
