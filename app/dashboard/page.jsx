@@ -1,6 +1,6 @@
 "use client";
 import { Logout } from "@/app/actions/authServer";
-import { auth } from "@/app/lib/firebase";
+import { auth } from "app/lib/firebase";
 import { redirect, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import NavBar from "../_components/Navbar";
