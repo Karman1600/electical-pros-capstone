@@ -19,7 +19,7 @@ export default function Home() {
       {/* Additional content can go here */}
       <section className="hero">
         <div className="hero-content text-center">
-          <h2>Expert Electrical Consulting</h2>
+        <h2 className="text-4xl font-semibold">Expert Electrical Consulting</h2>
           <p>Empowering your business with expert electrical solutions.</p>
           <a href="/discover">
             <button>Discover more</button>
@@ -34,7 +34,7 @@ export default function Home() {
             forward.
           </p>
           <Image
-            src="/home_image.png" 
+            src="/home.jpg" 
             alt="Electrical Consultancy"
             width={600}
             height={400}

@@ -1,5 +1,5 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState, useEffect } from 'react';
 
 function ElectricalInstallations() {
   const [estimate, setEstimate] = useState(null);
@@ -8,6 +8,32 @@ function ElectricalInstallations() {
     area: 0,
     appliances: [],
   });
+  const [showTopBtn, setShowTopBtn] = useState(false);
+
+  // Show Back to Top button after scrolling 200px
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowTopBtn(true);
+      } else {
+        setShowTopBtn(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Scroll back to top when the button is clicked
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   // Define costs
   const laborCostPerSquareMeter = 5;
@@ -19,7 +45,7 @@ function ElectricalInstallations() {
     soundSystem: 120,
   };
 
-  //to handle the estimates
+  // Handle cost estimation
   const handleEstimate = (event) => {
     event.preventDefault();
 
@@ -128,7 +154,9 @@ function ElectricalInstallations() {
               type="number"
               value={inputValues.area}
               min={0}
-              onChange={(e) => setInputValues({ ...inputValues, area: e.target.value })}
+              onChange={(e) =>
+                setInputValues({ ...inputValues, area: e.target.value })
+              }
               className="border p-2 w-full rounded"
               required
             />
@@ -136,89 +164,75 @@ function ElectricalInstallations() {
 
           {/* Appliances Selection (Only for Advanced Plan) */}
           {plan === "advanced" && (
-            <>
-              <div className="mb-4">
-                <label className="block text-lg mb-2">Select Appliances</label>
-                <div>
-                  <label>
-                    <input
-                      type="checkbox"
-                      value="projector"
-                      onChange={(e) => {
-                        const selectedAppliances =
-                          inputValues.appliances.includes(e.target.value)
-                            ? inputValues.appliances.filter(
-                                (appliance) => appliance !== e.target.value
-                              )
-                            : [...inputValues.appliances, e.target.value];
-                        setInputValues({
-                          ...inputValues,
-                          appliances: selectedAppliances,
-                        });
-                      }}
-                    />{" "}
-                    Projector
-                  </label>
-                  <label className="ml-4">
-                    <input
-                      type="checkbox"
-                      value="heatingSystem"
-                      onChange={(e) => {
-                        const selectedAppliances =
-                          inputValues.appliances.includes(e.target.value)
-                            ? inputValues.appliances.filter(
-                                (appliance) => appliance !== e.target.value
-                              )
-                            : [...inputValues.appliances, e.target.value];
-                        setInputValues({
-                          ...inputValues,
-                          appliances: selectedAppliances,
-                        });
-                      }}
-                    />{" "}
-                    Heating System
-                  </label>
-                  <label className="ml-4">
-                    <input
-                      type="checkbox"
-                      value="airConditioner"
-                      onChange={(e) => {
-                        const selectedAppliances =
-                          inputValues.appliances.includes(e.target.value)
-                            ? inputValues.appliances.filter(
-                                (appliance) => appliance !== e.target.value
-                              )
-                            : [...inputValues.appliances, e.target.value];
-                        setInputValues({
-                          ...inputValues,
-                          appliances: selectedAppliances,
-                        });
-                      }}
-                    />{" "}
-                    Air Conditioner
-                  </label>
-                  <label className="ml-4">
-                    <input
-                      type="checkbox"
-                      value="soundSystem"
-                      onChange={(e) => {
-                        const selectedAppliances =
-                          inputValues.appliances.includes(e.target.value)
-                            ? inputValues.appliances.filter(
-                                (appliance) => appliance !== e.target.value
-                              )
-                            : [...inputValues.appliances, e.target.value];
-                        setInputValues({
-                          ...inputValues,
-                          appliances: selectedAppliances,
-                        });
-                      }}
-                    />{" "}
-                    Sound System
-                  </label>
-                </div>
+            <div className="mb-4">
+              <label className="block text-lg mb-2">Select Appliances</label>
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="projector"
+                    onChange={(e) => {
+                      const selectedAppliances = inputValues.appliances.includes(e.target.value)
+                        ? inputValues.appliances.filter(appliance => appliance !== e.target.value)
+                        : [...inputValues.appliances, e.target.value];
+                      setInputValues({
+                        ...inputValues,
+                        appliances: selectedAppliances,
+                      });
+                    }}
+                  />{" "}
+                  Projector
+                </label>
+                <label className="ml-4">
+                  <input
+                    type="checkbox"
+                    value="heatingSystem"
+                    onChange={(e) => {
+                      const selectedAppliances = inputValues.appliances.includes(e.target.value)
+                        ? inputValues.appliances.filter(appliance => appliance !== e.target.value)
+                        : [...inputValues.appliances, e.target.value];
+                      setInputValues({
+                        ...inputValues,
+                        appliances: selectedAppliances,
+                      });
+                    }}
+                  />{" "}
+                  Heating System
+                </label>
+                <label className="ml-4">
+                  <input
+                    type="checkbox"
+                    value="airConditioner"
+                    onChange={(e) => {
+                      const selectedAppliances = inputValues.appliances.includes(e.target.value)
+                        ? inputValues.appliances.filter(appliance => appliance !== e.target.value)
+                        : [...inputValues.appliances, e.target.value];
+                      setInputValues({
+                        ...inputValues,
+                        appliances: selectedAppliances,
+                      });
+                    }}
+                  />{" "}
+                  Air Conditioner
+                </label>
+                <label className="ml-4">
+                  <input
+                    type="checkbox"
+                    value="soundSystem"
+                    onChange={(e) => {
+                      const selectedAppliances = inputValues.appliances.includes(e.target.value)
+                        ? inputValues.appliances.filter(appliance => appliance !== e.target.value)
+                        : [...inputValues.appliances, e.target.value];
+                      setInputValues({
+                        ...inputValues,
+                        appliances: selectedAppliances,
+                      });
+                    }}
+                  />{" "}
+                  Sound System
+                </label>
               </div>
-            </>
+            </div>
           )}
 
           <button
@@ -249,6 +263,16 @@ function ElectricalInstallations() {
           </div>
         )}
       </section>
+
+      {/* Back to Top Button */}
+      {showTopBtn && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-5 right-5 bg-indigo-600 text-white py-2 px-4 rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          Back to Top
+        </button>
+      )}
     </div>
   );
 }
