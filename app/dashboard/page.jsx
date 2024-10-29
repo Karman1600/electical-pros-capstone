@@ -1,19 +1,19 @@
 "use client";
 import { Logout } from "@/app/actions/authServer";
-import { auth } from "app/lib/firebase";
+import { auth } from "@/lib/firebase";
 import { redirect, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import NavBar from "../_components/Navbar";
 import Image from "next/image";
 import Link from "next/link";
-import { useUserAuth } from "@/app/lib/auth-context";
+import { useUserAuth } from "@/lib/auth-context";
 import {
   deleteCurrentAppointment,
   fetchAppointmentDate,
-} from "@/app/lib/firestoreFunctions";
+} from "@/lib/firestoreFunctions";
 import { Timestamp } from "firebase/firestore";
 import { FaRegTrashCan } from "react-icons/fa6";
-import { getUserRole } from "@/app/lib/authUtilities";
+import { getUserRole } from "@/lib/authUtilities";
 
 function page() {
   const [appointments, setAppointments] = useState();
