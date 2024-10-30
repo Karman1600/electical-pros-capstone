@@ -9,6 +9,7 @@ function ElectricalInstallations() {
     appliances: [],
   });
   const [showTopBtn, setShowTopBtn] = useState(false);
+  const [estimatedTime, setEstimatedTime] = useState(0);// initial estimated time 
 
   // Show Back to Top button after scrolling 200px
   useEffect(() => {
@@ -45,6 +46,16 @@ function ElectricalInstallations() {
     soundSystem: 120,
   };
 
+  // function to calculate the estimated time
+  const calculateEstimatedTime = () => {
+    if(inputValues.area <=500){
+      setEstimatedTime(7);
+    }
+    else{
+      setEstimatedTime((Math.ceil(inputValues.area/500)*7));
+    }
+  }
+
   // Handle cost estimation
   const handleEstimate = (event) => {
     event.preventDefault();
@@ -52,6 +63,7 @@ function ElectricalInstallations() {
     let laborCost = laborCostPerSquareMeter * inputValues.area;
     let materialCost = materialCostPerSquareMeter * inputValues.area;
     let totalCost = laborCost + materialCost;
+    calculateEstimatedTime();
 
     if (plan === "advanced") {
       let applianceCost = inputValues.appliances.reduce(
@@ -59,6 +71,8 @@ function ElectricalInstallations() {
         0
       );
       totalCost += applianceCost;
+      const totalNumberOfAppliances = inputValues.appliances.length;
+      setEstimatedTime(prev=>prev + (totalNumberOfAppliances * 2 ));
       setEstimate({
         laborCost,
         materialCost,
@@ -73,6 +87,7 @@ function ElectricalInstallations() {
       });
     }
   };
+
 
   return (
     <div className="font-sans text-gray-800 bg-[#f9f9f9] p-5">
@@ -239,7 +254,7 @@ function ElectricalInstallations() {
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded"
           >
-            Estimate Cost
+            Estimate Cost And Time
           </button>
         </form>
 
@@ -260,6 +275,7 @@ function ElectricalInstallations() {
             <h3 className="text-2xl font-bold mt-3">
               Total Estimated Cost: ${estimate.totalCost}
             </h3>
+            <h3 className="text-2xl font-bold">Estimated Time: {estimatedTime} days</h3>
           </div>
         )}
       </section>
