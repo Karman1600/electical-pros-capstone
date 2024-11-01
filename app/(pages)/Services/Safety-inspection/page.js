@@ -17,12 +17,12 @@ function SafetyInspection() {
 
     // function to calculate the estimated time
     const calculateEstimatedTime = () => {
-        if(0 < inputValues.area <=500){
-            inputValues.planType === 'advanced' ? setEstimatedTime(2) : setEstimatedTime(7);
+        if(inputValues.area <=500){
+            inputValues.planType === 'advanced' ? setEstimatedTime(2) : setEstimatedTime(1);
         }
         else{
             const timeForEachArea = Math.ceil(inputValues.area/500);
-            inputValues.planType === 'advanced' ? setEstimatedTime(timeForEachArea + 1) : setEstimatedTime(timeForEachArea * 7);
+            inputValues.planType === 'advanced' ? setEstimatedTime(timeForEachArea + 1) : setEstimatedTime(timeForEachArea);
         }
       }
 
@@ -113,7 +113,7 @@ function SafetyInspection() {
                 {estimate && (
                     <div className="mt-5">
                         <h3 className="text-2xl font-bold mt-3">Estimated Total Cost: ${estimate.totalCost}</h3>
-                        <h3 className="text-2xl font-bold mt-3">Estimated Total Time: {estimatedTime} days</h3>
+                        <h3 className="text-2xl font-bold mt-3">Estimated Total Time: {estimatedTime} day</h3>
                     </div>
                 )}
             </section>
