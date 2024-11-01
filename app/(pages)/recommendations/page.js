@@ -41,6 +41,7 @@ export default function Recommendations() {
   const [area, setArea] = useState("");
   const [isCommercial, setIsCommercial] = useState(false);
   const [filteredServices, setFilteredServices] = useState([]);
+  const [uploadedImage, setUploadedImage] = useState(null); // New state for image upload
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,10 +55,21 @@ export default function Recommendations() {
     setFilteredServices(recommendations);
   };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUploadedImage(reader.result); // Set image data for preview
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="p-10 bg-gray-50 min-h-screen">
       <h1 className="text-4xl font-bold text-center mb-8 text-black">Service Recommendations</h1>
-      
+
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
         <div className="mb-4">
           <label className="block text-lg font-semibold mb-2 text-black" htmlFor="budget">Budget ($):</label>
@@ -93,6 +105,25 @@ export default function Recommendations() {
           />
           <span className="text-black">Yes</span>
         </div>
+
+        {/* New Image Upload Field */}
+        <div className="mb-4">
+          <label className="block text-lg font-semibold mb-2 text-black">Upload Site Image:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="w-full p-2 border rounded-lg"
+          />
+        </div>
+
+        {/* Image Preview */}
+        {uploadedImage && (
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold text-black">Image Preview:</h3>
+            <img src={uploadedImage} alt="Uploaded Site" className="mt-2 w-full h-auto rounded-lg" />
+          </div>
+        )}
 
         <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded-lg">
           Get Recommendations for your services
