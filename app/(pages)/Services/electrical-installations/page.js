@@ -1,7 +1,10 @@
-'use client';
-import React, { useState, useEffect } from 'react';
+"use client";
+import React, { useState, useEffect } from "react";
+import Link from 'next/link';
+import { getAuth } from "firebase/auth";
 
 function ElectricalInstallations() {
+  const auth = getAuth();
   const [estimate, setEstimate] = useState(null);
   const [plan, setPlan] = useState("basic");
   const [inputValues, setInputValues] = useState({
@@ -9,7 +12,7 @@ function ElectricalInstallations() {
     appliances: [],
   });
   const [showTopBtn, setShowTopBtn] = useState(false);
-  const [estimatedTime, setEstimatedTime] = useState(0);// initial estimated time 
+  const [estimatedTime, setEstimatedTime] = useState(0); // initial estimated time
 
   // Show Back to Top button after scrolling 200px
   useEffect(() => {
@@ -21,10 +24,10 @@ function ElectricalInstallations() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -32,7 +35,7 @@ function ElectricalInstallations() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -48,13 +51,12 @@ function ElectricalInstallations() {
 
   // function to calculate the estimated time
   const calculateEstimatedTime = () => {
-    if(inputValues.area <=500){
+    if (inputValues.area <= 500) {
       setEstimatedTime(7);
+    } else {
+      setEstimatedTime(Math.ceil(inputValues.area / 500) * 7);
     }
-    else{
-      setEstimatedTime((Math.ceil(inputValues.area/500)*7));
-    }
-  }
+  };
 
   // Handle cost estimation
   const handleEstimate = (event) => {
@@ -72,7 +74,7 @@ function ElectricalInstallations() {
       );
       totalCost += applianceCost;
       const totalNumberOfAppliances = inputValues.appliances.length;
-      setEstimatedTime(prev=>prev + (totalNumberOfAppliances * 2 ));
+      setEstimatedTime((prev) => prev + totalNumberOfAppliances * 2);
       setEstimate({
         laborCost,
         materialCost,
@@ -87,7 +89,6 @@ function ElectricalInstallations() {
       });
     }
   };
-
 
   return (
     <div className="font-sans text-gray-800 bg-[#f9f9f9] p-5">
@@ -187,9 +188,12 @@ function ElectricalInstallations() {
                     type="checkbox"
                     value="projector"
                     onChange={(e) => {
-                      const selectedAppliances = inputValues.appliances.includes(e.target.value)
-                        ? inputValues.appliances.filter(appliance => appliance !== e.target.value)
-                        : [...inputValues.appliances, e.target.value];
+                      const selectedAppliances =
+                        inputValues.appliances.includes(e.target.value)
+                          ? inputValues.appliances.filter(
+                              (appliance) => appliance !== e.target.value
+                            )
+                          : [...inputValues.appliances, e.target.value];
                       setInputValues({
                         ...inputValues,
                         appliances: selectedAppliances,
@@ -203,9 +207,12 @@ function ElectricalInstallations() {
                     type="checkbox"
                     value="heatingSystem"
                     onChange={(e) => {
-                      const selectedAppliances = inputValues.appliances.includes(e.target.value)
-                        ? inputValues.appliances.filter(appliance => appliance !== e.target.value)
-                        : [...inputValues.appliances, e.target.value];
+                      const selectedAppliances =
+                        inputValues.appliances.includes(e.target.value)
+                          ? inputValues.appliances.filter(
+                              (appliance) => appliance !== e.target.value
+                            )
+                          : [...inputValues.appliances, e.target.value];
                       setInputValues({
                         ...inputValues,
                         appliances: selectedAppliances,
@@ -219,9 +226,12 @@ function ElectricalInstallations() {
                     type="checkbox"
                     value="airConditioner"
                     onChange={(e) => {
-                      const selectedAppliances = inputValues.appliances.includes(e.target.value)
-                        ? inputValues.appliances.filter(appliance => appliance !== e.target.value)
-                        : [...inputValues.appliances, e.target.value];
+                      const selectedAppliances =
+                        inputValues.appliances.includes(e.target.value)
+                          ? inputValues.appliances.filter(
+                              (appliance) => appliance !== e.target.value
+                            )
+                          : [...inputValues.appliances, e.target.value];
                       setInputValues({
                         ...inputValues,
                         appliances: selectedAppliances,
@@ -235,9 +245,12 @@ function ElectricalInstallations() {
                     type="checkbox"
                     value="soundSystem"
                     onChange={(e) => {
-                      const selectedAppliances = inputValues.appliances.includes(e.target.value)
-                        ? inputValues.appliances.filter(appliance => appliance !== e.target.value)
-                        : [...inputValues.appliances, e.target.value];
+                      const selectedAppliances =
+                        inputValues.appliances.includes(e.target.value)
+                          ? inputValues.appliances.filter(
+                              (appliance) => appliance !== e.target.value
+                            )
+                          : [...inputValues.appliances, e.target.value];
                       setInputValues({
                         ...inputValues,
                         appliances: selectedAppliances,
@@ -250,12 +263,22 @@ function ElectricalInstallations() {
             </div>
           )}
 
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Estimate Cost And Time
-          </button>
+          <div className="flex justify-between">
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Estimate Cost And Time
+            </button>
+            {estimate && (
+              <Link
+                href={auth.currentUser ? "../../../dashboard" : "../../../sign-in"}
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+              >
+                Continue With Details
+              </Link>
+            )}
+          </div>
         </form>
 
         {/* Display the estimate */}
@@ -275,7 +298,9 @@ function ElectricalInstallations() {
             <h3 className="text-2xl font-bold mt-3">
               Total Estimated Cost: ${estimate.totalCost}
             </h3>
-            <h3 className="text-2xl font-bold">Estimated Time: {estimatedTime} days</h3>
+            <h3 className="text-2xl font-bold">
+              Estimated Time: {estimatedTime} days
+            </h3>
           </div>
         )}
       </section>

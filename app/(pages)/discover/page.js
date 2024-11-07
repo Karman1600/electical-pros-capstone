@@ -33,22 +33,26 @@ function DiscoverMore() {
     {
       name: 'Commercial Office Building Electrical Design',
       description: 'A complete electrical design solution for a 10-story commercial building.',
-      rating: 4.8
+      rating: 4.8,
+       
     },
     {
       name: 'Residential Complex Electrical System',
       description: 'Electrical system design and implementation for a 100-unit residential complex.',
-      rating: 4.5
+      rating: 4.5,
+       
     },
     {
       name: 'Industrial Plant Power Distribution',
       description: 'Power distribution setup for a major industrial plant to improve efficiency.',
-      rating: 4.7
+      rating: 4.7,
+      
     },
     {
       name: 'Healthcare Facility Electrical Upgrade',
       description: 'Electrical upgrade for a major healthcare facility, improving safety and performance.',
-      rating: 4.9
+      rating: 4.9,
+      
     }
   ];
 
@@ -69,10 +73,20 @@ function DiscoverMore() {
         <h2 className="text-3xl font-semibold mb-8 text-gray-800 text-center">Past Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {projects.map((project, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">{project.name}</h3>
-              <p className="text-gray-600 mb-4">{project.description}</p>
-              <div className="text-yellow-500 font-semibold">Rating: {project.rating} / 5</div>
+            <div 
+              key={index} 
+              className={`${project.bgColor} p-6 rounded-lg shadow-lg relative group hover:scale-105 transition-transform duration-300 ease-in-out flex flex-col items-center justify-center text-center`}
+            >
+              <h3 className="text-xl font-semibold text-gray-800 group-hover:text-blue-700 transition duration-300">{project.name}</h3>
+              
+              {/* Hidden Description on Default, Visible on Hover */}
+              <p className="text-gray-600 mt-4 opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                {project.description}
+              </p>
+              
+              <div className="text-yellow-500 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Rating: {project.rating} / 5
+              </div>
             </div>
           ))}
         </div>
