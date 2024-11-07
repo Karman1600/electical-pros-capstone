@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
@@ -83,12 +84,14 @@ const Room = () => {
   };
 
   const handleOffer = async (offer) => {
-    await peerConnectionRef.current.setRemoteDescription(new RTCSessionDescription(offer));
+    await peerConnectionRef.current.setRemoteDescription(
+      new RTCSessionDescription(offer)
+    );
 
     candidateQueue.current.forEach(async (candidate) => {
       await peerConnectionRef.current.addIceCandidate(candidate);
     });
-    candidateQueue.current = []
+    candidateQueue.current = [];
 
     const answer = await peerConnectionRef.current.createAnswer();
     await peerConnectionRef.current.setLocalDescription(answer);
@@ -96,7 +99,9 @@ const Room = () => {
   };
 
   const handleAnswer = async (answer) => {
-    await peerConnectionRef.current.setRemoteDescription(new RTCSessionDescription(answer));
+    await peerConnectionRef.current.setRemoteDescription(
+      new RTCSessionDescription(answer)
+    );
 
     candidateQueue.current.forEach(async (candidate) => {
       await peerConnectionRef.current.addIceCandidate(candidate);
@@ -123,11 +128,27 @@ const Room = () => {
 
   return (
     <div>
-      <button onClick={createRoom}>Create Room</button>
+      <div className=" flex justify-center items-center align-middle ml-auto mt-4 gap-10 w-screen">
+      <button onClick={createRoom} className="justify-center">
+        <Image
+          src={"/call-add.svg"}
+          height={100}
+          width={100}
+          alt="create room icon"
+        />
+        Create Room
+      </button>
       {roomId && <p>Room ID: {roomId}</p>}
-      <button onClick={() => joinRoom(prompt("Enter Room ID"))}>
+      <button className=" justify-center" onClick={() => joinRoom(prompt("Enter Room ID"))}>
+      <Image
+          src={"/call-out.svg"}
+          height={100}
+          width={100}
+          alt="join room icon"
+        />
         Join Room
       </button>
+      </div>
       {/* <video ref={localStreamRef} autoPlay playsInline muted></video> */}
       {/* <video ref={localStreamRef} autoPlay playsInline muted style={{ width: "100%", maxHeight: "400px" }}></video> */}
       <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
