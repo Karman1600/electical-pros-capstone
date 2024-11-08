@@ -36,6 +36,7 @@ function Navbar() {
         <li>
           <Link href={"/ContactUs"}>Contact Us</Link>
         </li>
+        
         <li>
           <Link href={"/search"}>
             <svg

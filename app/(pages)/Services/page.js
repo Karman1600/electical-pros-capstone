@@ -96,6 +96,13 @@ function ServicesPage() {
               We install electric vehicle charging stations for both residential and commercial properties.
             </p>
           </div>
+          <div className="bg-white p-5 rounded-lg shadow-md">
+            <h2 className="text-3xl font-bold mb-3"><Link href={"/Quiz"}>
+               Quiz to 3D model
+              </Link></h2>
+            <p className="text-lg leading-8">
+            Answer Quiz and get your 3D model. </p>
+          </div>
         </div>
       </div>
 
