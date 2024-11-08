@@ -28,7 +28,12 @@ function adminPage() {
   }, [user]);
 
   return (
-    <div className="m-auto justify-center items-center flex flex-col mt-32">
+    <div className="m-auto justify-center items-center flex flex-col mt-16">
+      <Link href={"/dashboard/room"}>
+        <button className=" mx-auto text-white bg-blue-500 p-4 my-5 rounded-2xl drop-shadow-lg transition-all duration-200 hover:text-black hover:bg-slate-500 ">
+          Call Clients
+        </button>
+      </Link>
       <Link href={"/dashboard/admin/createAppointment"}>
         <button className=" mx-auto text-white bg-blue-500 p-4 my-5 rounded-2xl drop-shadow-lg transition-all duration-200 hover:text-black hover:bg-slate-500 ">
           Manually Add

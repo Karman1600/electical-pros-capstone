@@ -1,10 +1,9 @@
 "use client"; 
-
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Modes from './modes'; 
-import { useUserAuth } from "@/lib/auth-context";
-import { auth } from "@/lib/firebase";
+import { useUserAuth } from "@/app/lib/auth-context";
+import { auth } from "@/app/lib/firebase";
 
 function Navbar() {
   const { user } = useUserAuth();
@@ -60,7 +59,7 @@ function Navbar() {
           <li className="mt-1">
             <Link
               href={"/dashboard"}
-              className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50"
+              className="font-bold text-xl justify-center items-center mt-2 p-2 bg-red-500 rounded-2xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-red-200"
             >
               Dashboard
             </Link>
@@ -69,7 +68,7 @@ function Navbar() {
           <li className="mt-1">
             <Link
               href={"/sign-in"}
-              className="font-light text-xl justify-center items-center mt-2 p-2 bg-slate-100 rounded-2xl hover:text-blue-600 hover:bg-slate-50"
+              className="font-bold text-xl justify-center items-center mt-2 p-2 bg-red-500 rounded-2xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-red-200"
             >
               Sign In
             </Link>
