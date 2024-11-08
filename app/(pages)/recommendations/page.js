@@ -4,12 +4,14 @@ import UploadForm from '../shared/UploadForm';
 import Viewer3D from '../shared/Viewer3D';
 import Controls from '../shared/Controls';
 
+// Define realistic area values in square meters for each recommendation
 const recommendationsData = [
-  { id: 1, name: 'Lighting Installation', description: 'Install customized lighting for your space.', budget: 'low', area: 'small', weather: 'dry', projectType: 'residential' },
-  { id: 2, name: 'Electrical Wiring', description: 'Upgrade or install electrical wiring in your building.', budget: 'medium', area: 'medium', weather: 'wet', projectType: 'commercial' },
-  { id: 3, name: 'Solar Panel Installation', description: 'Install solar panels for energy efficiency.', budget: 'high', area: 'large', weather: 'sunny', projectType: 'commercial' },
+  { id: 1, name: 'Lighting Installation', description: 'Install customized lighting for your space.', budget: 'low', areaRange: [10, 50], projectType: 'residential' },
+  { id: 2, name: 'Electrical Wiring', description: 'Upgrade or install electrical wiring in your building.', budget: 'medium', areaRange: [50, 200], projectType: 'commercial' },
+  { id: 3, name: 'Solar Panel Installation', description: 'Install solar panels for energy efficiency.', budget: 'high', areaRange: [100, 500], projectType: 'commercial' },
 ];
 
+// Setting Up State Variables
 const RecommendationsPage = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [imageFile, setImageFile] = useState(null);
@@ -17,8 +19,7 @@ const RecommendationsPage = () => {
 
   // Filter criteria states
   const [budget, setBudget] = useState('');
-  const [area, setArea] = useState('');
-  const [weather, setWeather] = useState('');
+  const [area, setArea] = useState(''); // Area input field for custom value
   const [projectType, setProjectType] = useState('');
 
   const handleRecommendationSelect = (service) => {
@@ -43,10 +44,13 @@ const RecommendationsPage = () => {
 
   // Filter services based on the selected criteria
   const filteredRecommendations = recommendationsData.filter((service) => {
+    const minArea = service.areaRange[0];
+    const maxArea = service.areaRange[1];
+    const areaValue = parseFloat(area);
+
     return (
       (budget ? service.budget === budget : true) &&
-      (area ? service.area === area : true) &&
-      (weather ? service.weather === weather : true) &&
+      (area ? areaValue >= minArea && areaValue <= maxArea : true) && // Filter based on entered area
       (projectType ? service.projectType === projectType : true)
     );
   });
@@ -60,20 +64,16 @@ const RecommendationsPage = () => {
           <option value="medium">Medium</option>
           <option value="high">High</option>
         </select>
-        
-        <select value={area} onChange={(e) => setArea(e.target.value)} className="p-2 border rounded">
-          <option value="">Select Area</option>
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-        </select>
 
-        <select value={weather} onChange={(e) => setWeather(e.target.value)} className="p-2 border rounded">
-          <option value="">Select Weather</option>
-          <option value="dry">Dry</option>
-          <option value="wet">Wet</option>
-          <option value="sunny">Sunny</option>
-        </select>
+        {/* Input for specific area in square meters */}
+        <input 
+          type="number" 
+          placeholder="Enter area (e.g., 20 for small or 300 for large)" 
+          value={area} 
+          onChange={(e) => setArea(e.target.value)} 
+          className="p-2 border rounded"
+          min="0"
+        />
 
         <select value={projectType} onChange={(e) => setProjectType(e.target.value)} className="p-2 border rounded">
           <option value="">Select Project Type</option>
@@ -95,6 +95,7 @@ const RecommendationsPage = () => {
           >
             <h3 className="text-xl font-semibold">{service.name}</h3>
             <p>{service.description}</p>
+            <p>Suggested area: {service.areaRange[0]} - {service.areaRange[1]} m²</p>
           </div>
         ))}
       </div>
