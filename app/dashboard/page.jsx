@@ -31,18 +31,18 @@ function page() {
     const response = await deleteCurrentAppointment(user?.uid);
 
     if (response) {
-      setNoAppointment(true)
-      setAppointments()
+      setNoAppointment(true);
+      setAppointments();
     }
   };
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
       if (user) {
-        const userRole = await getUserRole(user.uid)
+        const userRole = await getUserRole(user.uid);
 
-        if(userRole != "client"){
-          router.push("/dashboard/admin")
+        if (userRole != "client") {
+          router.push("/dashboard/admin");
         }
 
         const data = await fetchAppointmentDate(user?.uid);
@@ -98,17 +98,30 @@ function page() {
               );
             })}
           </div>
-          <Link href="/dashboard/book">
-            <div className="m-3 p-4 justify-center items-center flex flex-col gap-2 bg-slate-100 rounded-3xl">
-              <Image
-                src={"/calendar.svg"}
-                height={100}
-                width={100}
-                alt="calender icon"
-              />
-              <p>Get an Appointment</p>
-            </div>
-          </Link>
+          <div className="flex">
+            <Link href="/dashboard/book">
+              <div className="m-3 p-4 justify-center items-center flex flex-col gap-2 bg-slate-100 rounded-3xl">
+                <Image
+                  src={"/calendar.svg"}
+                  height={100}
+                  width={100}
+                  alt="calender icon"
+                />
+                <p>Get an Appointment</p>
+              </div>
+            </Link>
+            <Link href="/dashboard/room">
+              <div className="m-3 p-4 justify-center items-center flex flex-col gap-2 bg-slate-100 rounded-3xl">
+                <Image
+                  src={"/call.svg"}
+                  height={100}
+                  width={100}
+                  alt="call icon"
+                />
+                <p>Connect to a Call</p>
+              </div>
+            </Link>
+          </div>
           <form action={SignOut}>
             <button
               type="submit"
