@@ -9,13 +9,27 @@ function SafetyInspection() {
         planType: 'basic', // Default plan type
     });
 
+    const [estimatedTime, setEstimatedTime] = useState(0);// initial estimated time 
+
     // Define fixed inspection costs
     const inspectionCostPerSquareMeterBasic = 13; // Basic plan cost per square meter
     const inspectionCostPerSquareMeterAdvanced = 20; // Advanced plan cost per square meter
 
+    // function to calculate the estimated time
+    const calculateEstimatedTime = () => {
+        if(inputValues.area <=500){
+            inputValues.planType === 'advanced' ? setEstimatedTime(2) : setEstimatedTime(1);
+        }
+        else{
+            const timeForEachArea = Math.ceil(inputValues.area/500);
+            inputValues.planType === 'advanced' ? setEstimatedTime(timeForEachArea + 1) : setEstimatedTime(timeForEachArea);
+        }
+      }
+
     // Handle form submission
     const handleEstimate = (event) => {
         event.preventDefault();
+        calculateEstimatedTime();
 
         // Calculate cost based on plan type
         const costPerSquareMeter =
@@ -91,7 +105,7 @@ function SafetyInspection() {
                     </div>
 
                     <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-                        Estimate Cost
+                        Estimate Cost And Time
                     </button>
                 </form>
 
@@ -99,6 +113,7 @@ function SafetyInspection() {
                 {estimate && (
                     <div className="mt-5">
                         <h3 className="text-2xl font-bold mt-3">Estimated Total Cost: ${estimate.totalCost}</h3>
+                        <h3 className="text-2xl font-bold mt-3">Estimated Total Time: {estimatedTime} day</h3>
                     </div>
                 )}
             </section>
