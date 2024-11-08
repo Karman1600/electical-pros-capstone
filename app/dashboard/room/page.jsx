@@ -13,9 +13,20 @@ const Room = () => {
   const peerConnectionRef = useRef(null);
   const candidateQueue = useRef([]);
 
+  const config = {
+    iceServers: [
+      {
+        urls: [
+          "stun:stun2.l.google.com:19302",
+          "stun:stun1.l.google.com:19302",
+        ],
+      },
+    ],
+    iceCandidatePoolSize: 10,
+  };
   useEffect(() => {
     if (typeof window !== "undefined") {
-      peerConnectionRef.current = new RTCPeerConnection();
+      peerConnectionRef.current = new RTCPeerConnection(config);
 
       peerConnectionRef.current.ontrack = (event) => {
         if (remoteStreamRef.current && !remoteStreamRef.current.srcObject) {
@@ -23,9 +34,20 @@ const Room = () => {
         }
       };
 
+      peerConnectionRef.current.onicecandidate = (event) => {
+        if (event.candidate) {
+          socket.emit("candidate", roomId, event.candidate);
+        }
+      };
+
       socket.on("offer", handleOffer);
       socket.on("answer", handleAnswer);
       socket.on("candidate", handleCandidate);
+      socket.on("user-joined", () => {
+        if (roomId) {
+          createOffer();
+        }
+      });
     }
     return () => {
       socket.off("offer", handleOffer);
@@ -35,7 +57,7 @@ const Room = () => {
         peerConnectionRef.current.close();
       }
     };
-  }, []);
+  }, [roomId]);
 
   const createRoom = async () => {
     const id = uuidv4();
@@ -48,7 +70,7 @@ const Room = () => {
     setRoomId(id);
     socket.emit("join-room", id);
     await getUserMedia();
-    createOffer();
+    // createOffer();
   };
 
   //   const getUserMedia = async () => {
@@ -63,10 +85,11 @@ const Room = () => {
 
   const getUserMedia = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
+      const constraints = {
+        video: { width: { ideal: 640 }, height: { ideal: 480 } },
         audio: true,
-      });
+      };
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
       localStreamRef.current.srcObject = stream;
       localStreamRef.current.play();
       stream.getTracks().forEach((track) => {
@@ -88,10 +111,10 @@ const Room = () => {
       new RTCSessionDescription(offer)
     );
 
-    candidateQueue.current.forEach(async (candidate) => {
-      await peerConnectionRef.current.addIceCandidate(candidate);
-    });
-    candidateQueue.current = [];
+    // candidateQueue.current.forEach(async (candidate) => {
+    //   await peerConnectionRef.current.addIceCandidate(candidate);
+    // });
+    // candidateQueue.current = [];
 
     const answer = await peerConnectionRef.current.createAnswer();
     await peerConnectionRef.current.setLocalDescription(answer);
@@ -103,10 +126,10 @@ const Room = () => {
       new RTCSessionDescription(answer)
     );
 
-    candidateQueue.current.forEach(async (candidate) => {
-      await peerConnectionRef.current.addIceCandidate(candidate);
-    });
-    candidateQueue.current = [];
+    // candidateQueue.current.forEach(async (candidate) => {
+    //   await peerConnectionRef.current.addIceCandidate(candidate);
+    // });
+    // candidateQueue.current = [];
   };
 
   const handleCandidate = async (candidate) => {
@@ -129,25 +152,28 @@ const Room = () => {
   return (
     <div>
       <div className=" flex justify-center items-center align-middle ml-auto mt-4 gap-10 w-screen">
-      <button onClick={createRoom} className="justify-center">
-        <Image
-          src={"/call-add.svg"}
-          height={100}
-          width={100}
-          alt="create room icon"
-        />
-        Create Room
-      </button>
-      {roomId && <p>Room ID: {roomId}</p>}
-      <button className=" justify-center" onClick={() => joinRoom(prompt("Enter Room ID"))}>
-      <Image
-          src={"/call-out.svg"}
-          height={100}
-          width={100}
-          alt="join room icon"
-        />
-        Join Room
-      </button>
+        <button onClick={createRoom} className="justify-center">
+          <Image
+            src={"/call-add.svg"}
+            height={100}
+            width={100}
+            alt="create room icon"
+          />
+          Create Room
+        </button>
+        {roomId && <p>Room ID: {roomId}</p>}
+        <button
+          className=" justify-center"
+          onClick={() => joinRoom(prompt("Enter Room ID"))}
+        >
+          <Image
+            src={"/call-out.svg"}
+            height={100}
+            width={100}
+            alt="join room icon"
+          />
+          Join Room
+        </button>
       </div>
       {/* <video ref={localStreamRef} autoPlay playsInline muted></video> */}
       {/* <video ref={localStreamRef} autoPlay playsInline muted style={{ width: "100%", maxHeight: "400px" }}></video> */}

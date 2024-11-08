@@ -1,6 +1,7 @@
 "use client";
 import { bookAppointment, checkAppointment } from "@/app/actions/appointment";
 import { useUserAuth } from "@/app/lib/auth-context";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -14,11 +15,10 @@ function page() {
     name: "",
     email: "",
     date: "",
-    time: "08"
+    time: "08",
   });
 
   const { user } = useUserAuth();
-
 
   const setCurrentDate = () => {
     const dtToday = new Date();
@@ -51,50 +51,54 @@ function page() {
   };
 
   const handleBookAppointemnt = async () => {
-    const response = await bookAppointment({name: user.displayName, email: user.email, date: formData.date, time: formData.time}, user?.uid);
+    const response = await bookAppointment(
+      {
+        name: user.displayName,
+        email: user.email,
+        date: formData.date,
+        time: formData.time,
+      },
+      user?.uid
+    );
     console.log(response);
 
     response.status ? setMessage(response?.response) : "";
   };
 
-
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-    setMessage("")
-    setStatus(false)
-
+    setMessage("");
+    setStatus(false);
   };
 
-  
   useEffect(() => {
-      const checkUserLoggedIn = async () => {
-        if (user) {
-          console.log("Logged IN")
-        } else {
-          console.log('User is not logged in');
-        }
-      };
+    const checkUserLoggedIn = async () => {
+      if (user) {
+        console.log("Logged IN");
+      } else {
+        console.log("User is not logged in");
+      }
+    };
 
-      checkUserLoggedIn(); // Call the function to check user login status
-      
-    }, [user]);
+    checkUserLoggedIn(); // Call the function to check user login status
+  }, [user]);
 
   return (
     <>
-    {user? (      <div className="flex justify-center m-auto rounded-2xl items-center bg-slate-100 w-1/4 py-8 pt-6 h-auto mt-36 flex-col">
-        <h2 className="flex text-center align-top font-bold text-xl font-sans mb-4">
-          Book an appointment
-        </h2>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <div className="flex gap-3 align-middle justify-center">
-              <label className="mt-1">{user.displayName}</label>
-              {/* <input
+      {user ? (
+        <div className="flex justify-center m-auto rounded-2xl items-center bg-slate-100 w-1/4 py-8 pt-6 h-auto mt-36 flex-col">
+          <h2 className="flex text-center align-top font-bold text-xl font-sans mb-4">
+            Book an appointment
+          </h2>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <div className="flex gap-3 align-middle justify-center">
+                <label className="mt-1">{user.displayName}</label>
+                {/* <input
                 type="text"
                 name="name"
                 id="name"
@@ -103,10 +107,10 @@ function page() {
                 onChange={handleInputChange}
                 required
               /> */}
-            </div>
-            <div className="flex gap-3 align-middle justify-center">
-              <label className="mt-1">{user.email}</label>
-              {/* <input
+              </div>
+              <div className="flex gap-3 align-middle justify-center">
+                <label className="mt-1">{user.email}</label>
+                {/* <input
                 type="email"
                 name="email"
                 id="email"
@@ -115,66 +119,79 @@ function page() {
                 className="h-1"
                 required
               /> */}
-            </div>
-            <div className="flex gap-3 align-middle justify-center">
-              <label className="mt-1">Date</label>
-              <input
-                type="date"
-                name="date"
-                id="txtDate"
-                min={minDate}
-                value={formData.date}
-                onChange={handleInputChange}
-                className="h-1"
-                required
-              />
-            </div>
-
-            <div class="flex justify-center items-center bg-gray-100">
-              <label className="">Time Slot</label>
-
-              <select
-                name="time"
-                id="time"
-                className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={formData.time}
-                defaultValue={"08"}
-                onChange={handleInputChange}
-              >
-                <option value="08" defaultChecked>Morning (8:00 AM)</option>
-                <option value="12">Noon (12:00 PM)</option>
-                <option value="18">Evening (6:00 PM)</option>
-              </select>
-            </div>
-
-            <div className="flex gap-3 align-middle justify-center">
-              <button
-                type="submit"
-                className="p-2 bg-green-400 rounded-2xl hover:bg-slate-300"
-              >
-                Check availability
-              </button>
-            </div>
-            {status && (
-              <div className={`${message?.color ? " bg-blue-200" : "bg-red-500" } flex align-middle justify-center p-2 mt-4 rounded-2xl`}>
-                {message?.message}
               </div>
-            )}
-            {message?.message === "Available" && (
-              <div>
-                <button
-                  type="button"
-                  onClick={() => handleBookAppointemnt()}
-                  className="flex align-middle justify-center p-2 mt-4 ml-20 bg-green-700 text-white rounded-2xl"
+              <div className="flex gap-3 align-middle justify-center">
+                <label className="mt-1">Date</label>
+                <input
+                  type="date"
+                  name="date"
+                  id="txtDate"
+                  min={minDate}
+                  value={formData.date}
+                  onChange={handleInputChange}
+                  className="h-1"
+                  required
+                />
+              </div>
+
+              <div class="flex justify-center items-center bg-gray-100">
+                <label className="">Time Slot</label>
+
+                <select
+                  name="time"
+                  id="time"
+                  className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={formData.time}
+                  defaultValue={"08"}
+                  onChange={handleInputChange}
                 >
-                  Book Now
+                  <option value="08" defaultChecked>
+                    Morning (8:00 AM)
+                  </option>
+                  <option value="12">Noon (12:00 PM)</option>
+                  <option value="18">Evening (6:00 PM)</option>
+                </select>
+              </div>
+
+              <div className="flex gap-3 align-middle justify-center">
+                <button
+                  type="submit"
+                  className="p-2 bg-green-400 rounded-2xl hover:bg-slate-300"
+                >
+                  Check availability
                 </button>
               </div>
-            )}
-          </form>
+              {status && (
+                <div
+                  className={`${
+                    message?.color ? " bg-blue-200" : "bg-red-500"
+                  } flex align-middle justify-center p-2 mt-4 rounded-2xl`}
+                >
+                  {message?.message}
+                </div>
+              )}
+              {message?.message === "Available" && (
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => handleBookAppointemnt()}
+                    className="flex align-middle justify-center p-2 mt-4 ml-20 bg-green-700 text-white rounded-2xl"
+                  >
+                    Book Now
+                  </button>
+                </div>
+              )}
+              <Link href={"/dashboard/admin/createAppointment"}>
+                <button className=" mx-auto text-white bg-blue-500 p-4 my-5 rounded-2xl drop-shadow-lg transition-all duration-200 hover:text-black hover:bg-slate-500 ">
+                  Manually Add
+                </button>
+              </Link>
+            </form>
+          </div>
         </div>
-      </div>) : (redirect("/sign-in"))}
-
+      ) : (
+        redirect("/sign-in")
+      )}
     </>
   );
 }
