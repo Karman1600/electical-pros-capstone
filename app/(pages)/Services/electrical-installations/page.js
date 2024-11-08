@@ -272,11 +272,12 @@ function ElectricalInstallations() {
             </button>
             {estimate && (
               <Link
-                href={auth.currentUser ? "../../../dashboard" : "../../../sign-in"}
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                Continue With Details
-              </Link>
+              href={auth.currentUser ? "/Services/Service-Update" : "/sign-in"}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Continue With Details
+            </Link>
+            
             )}
           </div>
         </form>
