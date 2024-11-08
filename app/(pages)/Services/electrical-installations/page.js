@@ -43,10 +43,6 @@ function ElectricalInstallations() {
   const laborCostPerSquareMeter = 5;
   const materialCostPerSquareMeter = 10;
   const applianceCosts = {
-    projector: 100,
-    heatingSystem: 200,
-    airConditioner: 150,
-    soundSystem: 120,
   };
 
   // function to calculate the estimated time
