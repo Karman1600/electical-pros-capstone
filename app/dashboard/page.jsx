@@ -31,30 +31,19 @@ function page() {
     const response = await deleteCurrentAppointment(user?.uid);
 
     if (response) {
-<<<<<<< HEAD
-      setNoAppointment(true)
-      setAppointments()
-=======
+
       setNoAppointment(true);
       setAppointments();
->>>>>>> 2471ce50e2592f6b479fc5dd60d17bc2a949c66b
     }
   };
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
       if (user) {
-<<<<<<< HEAD
-        const userRole = await getUserRole(user.uid)
-
-        if(userRole != "client"){
-          router.push("/dashboard/admin")
-=======
         const userRole = await getUserRole(user.uid);
 
         if (userRole != "client") {
           router.push("/dashboard/admin");
->>>>>>> 2471ce50e2592f6b479fc5dd60d17bc2a949c66b
         }
 
         const data = await fetchAppointmentDate(user?.uid);
@@ -110,19 +99,6 @@ function page() {
               );
             })}
           </div>
-<<<<<<< HEAD
-          <Link href="/dashboard/book">
-            <div className="m-3 p-4 justify-center items-center flex flex-col gap-2 bg-slate-100 rounded-3xl">
-              <Image
-                src={"/calendar.svg"}
-                height={100}
-                width={100}
-                alt="calender icon"
-              />
-              <p>Get an Appointment</p>
-            </div>
-          </Link>
-=======
           <div className="flex">
             <Link href="/dashboard/book">
               <div className="m-3 p-4 justify-center items-center flex flex-col gap-2 bg-slate-100 rounded-3xl">
@@ -147,7 +123,6 @@ function page() {
               </div>
             </Link>
           </div>
->>>>>>> 2471ce50e2592f6b479fc5dd60d17bc2a949c66b
           <form action={SignOut}>
             <button
               type="submit"

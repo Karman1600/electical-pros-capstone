@@ -168,7 +168,7 @@ function ElectricalInstallations() {
             </label>
             <input
               type="number"
-              value={inputValues.area}
+              value={inputValues.area}  
               min={0}
               onChange={(e) =>
                 setInputValues({ ...inputValues, area: e.target.value })
@@ -272,7 +272,7 @@ function ElectricalInstallations() {
             </button>
             {estimate && (
               <Link
-              href={auth.currentUser ? "/Services/Service-Update" : "/sign-in"}
+              href={{pathname : auth.currentUser ? "/Services/confirmationPage" : "/sign-in"}}  
               className="bg-blue-500 text-white px-4 py-2 rounded"
             >
               Continue With Details
@@ -320,3 +320,4 @@ function ElectricalInstallations() {
 }
 
 export default ElectricalInstallations;
+//Reference - https://chatgpt.com/ 
