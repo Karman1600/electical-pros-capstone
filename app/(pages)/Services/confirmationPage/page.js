@@ -1,5 +1,6 @@
 // Reference- https://v0.dev/ Prompt - create a confirmation page for the e-commerce website which shows the name of the service, plan name (advance or basic), area in sq meteres, (list of appliances which contain name, price only if persomn use advance plan) and total amount including 0.5% tax and also show the payment options
 "use client";
+
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
@@ -12,17 +13,18 @@ export default function Component() {
     const serviceName = searchParam.get("serviceName")
     const planName = searchParam.get("planName");
     const area = searchParam.get("area");
-    const appliances = searchParam.get("appliances");
+    const appliancesJSON = searchParam.get("appliances");
+    const appliances = JSON.parse(appliancesJSON)
     const baseAmount = searchParam.get("baseAmount");
-  const isAdvancedPlan = planName === "Advanced";
+  const isAdvancedPlan = planName === "advanced";
   const appliancesTotal = isAdvancedPlan ? appliances.reduce((sum, appliance) => sum + appliance.price, 0) : 0;
   const subtotal = parseFloat(baseAmount) + parseFloat(appliancesTotal);
   const tax = subtotal * 0.005; // 0.5% tax
   const total = subtotal + tax;
 
-useEffect(()=>{
-    console.log(appliances)
-},[appliances ])
+  useEffect(()=>{
+    console.log(isAdvancedPlan)
+  },[isAdvancedPlan])
 
   return (
     <Card className="w-full max-w-2xl mx-auto my-20">
@@ -37,7 +39,7 @@ useEffect(()=>{
         </div>
         <div className="flex justify-between">
           <span className="font-semibold">Plan:</span>
-          <span>{planName}</span>
+          <span>{planName.charAt(0).toUpperCase() + planName.slice(1).toLowerCase()}</span>
         </div>
         <div className="flex justify-between">
           <span className="font-semibold">Area:</span>
