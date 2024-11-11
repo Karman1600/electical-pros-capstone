@@ -72,7 +72,13 @@ function ElectricalInstallations() {
         (total, appliance) => total + applianceCosts[appliance],
         0
       );
+
       totalCost += applianceCost;
+
+      for(let i = 0;i<inputValues.appliances.length;i++){
+        inputValues.appliances[i] = {name: inputValues.appliances[i],price:applianceCosts[inputValues.appliances[i]]}
+      }
+
       const totalNumberOfAppliances = inputValues.appliances.length;
       setEstimatedTime((prev) => prev + totalNumberOfAppliances * 2);
       setEstimate({
@@ -271,12 +277,28 @@ function ElectricalInstallations() {
               Estimate Cost And Time
             </button>
             {estimate && (
-              <Link
-              href={{pathname : auth.currentUser ? "/Services/confirmationPage" : "/sign-in"}}  
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              Continue With Details
-            </Link>
+             <Link
+             href={{
+               pathname: auth.currentUser ? "/Services/confirmationPage" : "/sign-in",
+               query: {
+                 serviceName: "Electrical Installations & Upgrades",
+                 planName: plan,
+                 area: inputValues.area,
+                 appliances: JSON.stringify(inputValues.appliances), // Convert array of objects to JSON string
+                 baseAmount: estimate.totalCost,
+               },
+             }}
+             as={
+               auth.currentUser
+                 ? `/Services/confirmationPage?serviceName=Electrical%20Installations%20&%20Upgrades&planName=${encodeURIComponent(plan)}&area=${inputValues.area}&appliances=${encodeURIComponent(
+                     JSON.stringify(inputValues.appliances)
+                   )}&baseAmount=${estimate.totalCost}`
+                 : "/sign-in"
+             }
+             className="bg-blue-500 text-white px-4 py-2 rounded"
+           >
+             Continue With Details
+           </Link>
             
             )}
           </div>

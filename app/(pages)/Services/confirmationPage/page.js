@@ -1,30 +1,31 @@
 // Reference- https://v0.dev/ Prompt - create a confirmation page for the e-commerce website which shows the name of the service, plan name (advance or basic), area in sq meteres, (list of appliances which contain name, price only if persomn use advance plan) and total amount including 0.5% tax and also show the payment options
-
-
+"use client";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CreditCard, Smartphone } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
-export default function Component({
-  serviceName = "Cleaning Service",
-  planName = "Advanced",
-  area = 100,
-  appliances = [
-    { name: "Refrigerator", price: 20 },
-    { name: "Oven", price: 15 },
-    { name: "Dishwasher", price: 10 },
-  ],
-  baseAmount = 150,
-}) {
+export default function Component() {
+    const searchParam = useSearchParams();
+    const serviceName = searchParam.get("serviceName")
+    const planName = searchParam.get("planName");
+    const area = searchParam.get("area");
+    const appliances = searchParam.get("appliances");
+    const baseAmount = searchParam.get("baseAmount");
   const isAdvancedPlan = planName === "Advanced";
   const appliancesTotal = isAdvancedPlan ? appliances.reduce((sum, appliance) => sum + appliance.price, 0) : 0;
-  const subtotal = baseAmount + appliancesTotal;
+  const subtotal = parseFloat(baseAmount) + parseFloat(appliancesTotal);
   const tax = subtotal * 0.005; // 0.5% tax
   const total = subtotal + tax;
 
+useEffect(()=>{
+    console.log(appliances)
+},[appliances ])
+
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-2xl mx-auto my-20">
       <CardHeader>
         <CardTitle className="text-2xl">Order Confirmation</CardTitle>
         <CardDescription>Please review your order details</CardDescription>
