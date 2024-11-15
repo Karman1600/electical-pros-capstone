@@ -3,7 +3,6 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
 const ServiceRoomModel = ({ service }) => {
-  // Log the current service to check if it's being passed correctly
   console.log("Selected service:", service);
 
   return (
