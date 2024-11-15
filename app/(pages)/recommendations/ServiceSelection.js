@@ -2,40 +2,65 @@
 import React, { useState } from "react";
 
 // Service data with detailed information
+// Service data with detailed information
 const services = [
-  {
-    id: 1,
-    name: "Consulting Services",
-    description: "Strategic advice and technical expertise for all industries.",
-    isCommercial: true,
-    minBudget: 1000,
-    maxArea: 5000,
-  },
-  {
-    id: 2,
-    name: "Solution Design",
-    description: "Tailored electrical solutions for commercial, residential, and industrial spaces.",
-    isCommercial: true,
-    minBudget: 3000,
-    maxArea: 10000,
-  },
-  {
-    id: 3,
-    name: "Electrical Engineering Drawing",
-    description: "Detailed engineering drawings ensuring safety and compliance.",
-    isCommercial: false,
-    minBudget: 1500,
-    maxArea: 3000,
-  },
-  {
-    id: 4,
-    name: "Maintenance Services",
-    description: "Regular and corrective maintenance for all electrical systems.",
-    isCommercial: false,
-    minBudget: 500,
-    maxArea: 2000,
-  },
-];
+    {
+      id: 1,
+      name: "Consulting Services",
+      description: "Strategic advice and technical expertise for all industries.",
+      isCommercial: true,
+      minBudget: 1000,
+      maxArea: 5000,
+    },
+    {
+      id: 2,
+      name: "Solution Design",
+      description: "Tailored electrical solutions for commercial, residential, and industrial spaces.",
+      isCommercial: true,
+      minBudget: 3000,
+      maxArea: 10000,
+    },
+    {
+      id: 3,
+      name: "Electrical Engineering Drawing",
+      description: "Detailed engineering drawings ensuring safety and compliance.",
+      isCommercial: false,
+      minBudget: 1500,
+      maxArea: 3000,
+    },
+    {
+      id: 4,
+      name: "Maintenance Services",
+      description: "Regular and corrective maintenance for all electrical systems.",
+      isCommercial: false,
+      minBudget: 500,
+      maxArea: 2000,
+    },
+    {
+      id: 5,
+      name: "System Analysis",
+      description: "Comprehensive analysis of electrical systems to enhance performance.",
+      isCommercial: true,
+      minBudget: 2000,
+      maxArea: 8000,
+    },
+    {
+      id: 6,
+      name: "Project Consulting",
+      description: "End-to-end consulting services for successful project execution.",
+      isCommercial: true,
+      minBudget: 2500,
+      maxArea: 6000,
+    },
+    {
+      id: 7,
+      name: "Training and Development",
+      description: "Specialized training programs to develop technical expertise.",
+      isCommercial: false,
+      minBudget: 1000,
+      maxArea: 4000,
+    },
+  ];
 
 // Service names only
 const servicesData = [
