@@ -1,102 +1,160 @@
 // components/RoomModel.js
-
-// Importing React library to create a React component
-import React from 'react';
-
-// Importing the Canvas component from @react-three/fiber, which is used to create a 3D scene
+import React, { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-
-// Importing OrbitControls from @react-three/drei to enable user interaction (e.g., rotating the view)
 import { OrbitControls } from '@react-three/drei';
 
-// The RoomModel component takes `appliance` and `wiring` as props
 const RoomModel = ({ appliance, wiring }) => {
+  // State to track hovered item information
+  const [hoveredItem, setHoveredItem] = useState(null);
+
+  // Hover information for appliances and wiring
+  const infoData = {
+    projector: {
+      name: 'Projector',
+      use: 'Projects visuals onto a surface.',
+      alternatives: 'Television, LED Screen',
+      price: '$400 - $1000',
+    },
+    heatingSystem: {
+      name: 'Heating System',
+      use: 'Heats the room efficiently.',
+      alternatives: 'Portable Heaters, HVAC',
+      price: '$200 - $800',
+    },
+    airConditioner: {
+      name: 'Air Conditioner',
+      use: 'Cools the room.',
+      alternatives: 'Fans, Cooling Systems',
+      price: '$300 - $1200',
+    },
+    soundSystem: {
+      name: 'Sound System',
+      use: 'Provides high-quality audio.',
+      alternatives: 'Speakers, Soundbar',
+      price: '$150 - $600',
+    },
+    standardWiring: {
+      name: 'Standard Wiring',
+      use: 'Basic electrical connection.',
+      alternatives: 'Smart Wiring',
+      price: '$50 - $200',
+    },
+    smartWiring: {
+      name: 'Smart Wiring',
+      use: 'Advanced wiring with smart controls.',
+      alternatives: 'Standard Wiring',
+      price: '$200 - $500',
+    },
+  };
+
   return (
-    // A container for the 3D scene with styling
-    <div className="w-full h-[400px] bg-gray-200 mt-10 rounded-lg">
-      
-      {/* Canvas is used to render the 3D scene */}
+    <div className="w-full h-[400px] bg-gray-200 mt-10 relative">
       <Canvas>
-        {/* Adding ambient light to softly illuminate the scene */}
         <ambientLight intensity={0.5} />
-        
-        {/* Adding directional light to create shadows and depth */}
         <directionalLight position={[5, 5, 5]} />
 
-        {/* Adding a floor to the 3D room */}
+        {/* Room Structure */}
         <mesh position={[0, -1, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[5, 5]} /> // Defines the size of the floor
-          <meshStandardMaterial color="#D9B382" /> // Sets the floor color
+          <planeGeometry args={[5, 5]} />
+          <meshStandardMaterial color="#D9B382" />
         </mesh>
-
-        {/* Adding a back wall */}
         <mesh position={[0, 0.5, -2.5]}>
-          <boxGeometry args={[5, 2.5, 0.1]} /> // Width, height, depth of the wall
-          <meshStandardMaterial color="#F5F5F5" /> // Wall color
+          <boxGeometry args={[5, 2.5, 0.1]} />
+          <meshStandardMaterial color="#F5F5F5" />
         </mesh>
-
-        {/* Adding a left wall */}
         <mesh position={[-2.5, 0.5, 0]} rotation={[0, Math.PI / 2, 0]}>
           <boxGeometry args={[5, 2.5, 0.1]} />
           <meshStandardMaterial color="#F5F5F5" />
         </mesh>
-
-        {/* Adding a right wall with a window */}
         <mesh position={[2.5, 0.5, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <boxGeometry args={[5, 2.5, 0.1]} />
           <meshStandardMaterial color="#F5F5F5" />
         </mesh>
 
-        {/* Adding different appliances based on the `appliance` prop */}
+        {/* Appliances with hover detection */}
         {appliance === 'projector' && (
-          <mesh position={[0, 0.5, -2.3]}>
-            <boxGeometry args={[1, 0.3, 0.3]} /> // Shape of the projector
+          <mesh
+            position={[0, 0.8, -1]}
+            onPointerOver={() => setHoveredItem(infoData.projector)}
+            onPointerOut={() => setHoveredItem(null)}
+          >
+            <boxGeometry args={[0.5, 0.3, 0.3]} />
             <meshStandardMaterial color="gray" />
           </mesh>
         )}
 
         {appliance === 'heatingSystem' && (
-          <mesh position={[-1.5, -0.5, 1]}>
-            <boxGeometry args={[0.6, 0.4, 0.2]} /> // Shape of the heating system
+          <mesh
+            position={[-1.5, -0.5, 1]}
+            onPointerOver={() => setHoveredItem(infoData.heatingSystem)}
+            onPointerOut={() => setHoveredItem(null)}
+          >
+            <boxGeometry args={[0.6, 0.4, 0.2]} />
             <meshStandardMaterial color="red" />
           </mesh>
         )}
 
         {appliance === 'airConditioner' && (
-          <mesh position={[1.5, 1, -2.4]}>
-            <boxGeometry args={[0.8, 0.3, 0.2]} /> // Shape of the air conditioner
+          <mesh
+            position={[1.5, 1, -2.4]}
+            onPointerOver={() => setHoveredItem(infoData.airConditioner)}
+            onPointerOut={() => setHoveredItem(null)}
+          >
+            <boxGeometry args={[0.8, 0.3, 0.2]} />
             <meshStandardMaterial color="lightblue" />
           </mesh>
         )}
 
         {appliance === 'soundSystem' && (
-          <mesh position={[0, -0.5, 2]}>
-            <boxGeometry args={[0.4, 0.4, 0.4]} /> // Shape of the sound system
+          <mesh
+            position={[0, -0.5, 2]}
+            onPointerOver={() => setHoveredItem(infoData.soundSystem)}
+            onPointerOut={() => setHoveredItem(null)}
+          >
+            <boxGeometry args={[0.4, 0.4, 0.4]} />
             <meshStandardMaterial color="black" />
           </mesh>
         )}
 
-        {/* Adding different wiring types based on the `wiring` prop */}
+        {/* Wiring with hover detection */}
         {wiring === 'standardWiring' && (
-          <mesh position={[2.45, 0.5, 0]} rotation={[0, Math.PI / 2, 0]}>
-            <cylinderGeometry args={[0.02, 0.02, 3.5, 32]} /> // Shape of the standard wiring
+          <mesh
+            position={[2.45, 0.5, 0]}
+            rotation={[0, Math.PI / 2, 0]}
+            onPointerOver={() => setHoveredItem(infoData.standardWiring)}
+            onPointerOut={() => setHoveredItem(null)}
+          >
+            <cylinderGeometry args={[0.02, 0.02, 3.5, 32]} />
             <meshStandardMaterial color="blue" />
           </mesh>
         )}
 
         {wiring === 'smartWiring' && (
-          <mesh position={[2.45, 0.1, 0]} rotation={[0, Math.PI / 2, 0]}>
-            <cylinderGeometry args={[0.02, 0.02, 3.5, 32]} /> // Shape of the smart wiring
+          <mesh
+            position={[2.45, 0.1, 0]}
+            rotation={[0, Math.PI / 2, 0]}
+            onPointerOver={() => setHoveredItem(infoData.smartWiring)}
+            onPointerOut={() => setHoveredItem(null)}
+          >
+            <cylinderGeometry args={[0.02, 0.02, 3.5, 32]} />
             <meshStandardMaterial color="green" />
           </mesh>
         )}
 
-        {/* OrbitControls allow the user to rotate and zoom the 3D scene */}
         <OrbitControls enableZoom={true} />
       </Canvas>
+
+      {/* Tooltip */}
+      {hoveredItem && (
+        <div className="absolute top-0 left-0 p-3 bg-white border border-gray-300 shadow-md rounded-md z-10">
+          <p className="font-bold">{hoveredItem.name}</p>
+          <p>Use: {hoveredItem.use}</p>
+          <p>Alternatives: {hoveredItem.alternatives}</p>
+          <p>Price: {hoveredItem.price}</p>
+        </div>
+      )}
     </div>
   );
 };
 
-// Exporting the RoomModel component so it can be imported and used in other files
 export default RoomModel;
