@@ -10,7 +10,7 @@ export default async (req, res) => {
       const lineItems = [
         {
           price_data: {
-            currency: 'usd',
+            currency: 'cad',
             product_data: {
               name: serviceName,
               description: `${planName} Plan, ${area} sq meters`,
@@ -26,7 +26,7 @@ export default async (req, res) => {
         appliances.forEach(appliance => {
           lineItems.push({
             price_data: {
-              currency: 'usd',
+              currency: 'cad',
               product_data: {
                 name: appliance.name,
               },

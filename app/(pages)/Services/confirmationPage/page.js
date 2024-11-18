@@ -1,4 +1,3 @@
-// Reference- https://v0.dev/ Prompt - create a confirmation page for the e-commerce website which shows the name of the service, plan name (advance or basic), area in sq meteres, (list of appliances which contain name, price only if persomn use advance plan) and total amount including 0.5% tax and also show the payment options
 "use client";
 
 import { useEffect } from "react";
@@ -108,7 +107,6 @@ export default function Component() {
                 </div>
             </CardContent>
             <CardFooter className="flex-col space-y-4">
-                <h3 className="font-semibold w-full">Payment Options:</h3>
                 <div className="flex justify-between w-full">
                     <Button onClick={handleCheckout} variant="outline" className="flex items-center space-x-2">
                         <CreditCard className="h-4 w-4" />
