@@ -13,6 +13,7 @@ function Footer() {
               Recommendations
             </Link>
           </li>
+          
         </ul>
 
         {/* Theme Toggle */}
