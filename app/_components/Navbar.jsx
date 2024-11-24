@@ -22,7 +22,7 @@ function Navbar() {
 
   return (
     <nav className="bg-gray-900 p-4 flex justify-between items-center">
-      <div className="text-white text-2xl font-bold">Electrical-Pros</div>
+      <div className="text-white text-2xl font-bold"><Link href={"/"}>Electrical-Pros</Link></div>
       <ul className="flex space-x-6 items-center text-white">
         <li>
           <Link href={"/index"}>Home</Link>
