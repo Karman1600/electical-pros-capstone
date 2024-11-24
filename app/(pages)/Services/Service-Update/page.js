@@ -1,7 +1,11 @@
 // Reference- https://v0.dev/ Prompt - make me a dashboard showing the work done for the service choose by the user
+'use client'
 
+import { useState } from 'react'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
-import { Package } from 'lucide-react'
+import { Bell, Home, Package, Settings, User } from 'lucide-react'
+
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -9,6 +13,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Progress } from "@/components/ui/progress"
 import {
   Table,
@@ -40,15 +52,67 @@ const spendingChartData = userServices.map(service => ({
 }))
 
 export default function Dashboard() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-screen bg-gray-100">
+      {/* Sidebar */}
+      {/* <div className={`bg-white w-64 min-h-screen flex flex-col ${isSidebarOpen ? 'block' : 'hidden'} md:block`}>
+        <div className="p-4">
+          <h2 className="text-2xl font-bold">ElectroFix</h2>
+        </div>
+        <nav className="flex-1 px-2 py-4 space-y-2">
+          <Button variant="ghost" className="w-full justify-start">
+            <Home className="mr-2 h-4 w-4" /> Dashboard
+          </Button>
+          <Button variant="ghost" className="w-full justify-start">
+            <Package className="mr-2 h-4 w-4" /> Services
+          </Button>
+          <Button variant="ghost" className="w-full justify-start">
+            <User className="mr-2 h-4 w-4" /> Profile
+          </Button>
+          <Button variant="ghost" className="w-full justify-start">
+            <Settings className="mr-2 h-4 w-4" /> Settings
+          </Button>
+        </nav>
+      </div> */}
+
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <header className="bg-white shadow-sm">
-          <div className="max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-2xl font-semibold text-gray-900 mx-auto">Dashboard</h1>
+          <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <Button variant="ghost" className="md:hidden" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </Button>
+            <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+            <div className="flex items-center">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                    <img
+                      className="rounded-full"
+                      src="/placeholder.svg?height=32&width=32"
+                      alt="User avatar"
+                    />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56" align="end" forceMount>
+                  <DropdownMenuLabel className="font-normal">
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none">John Doe</p>
+                      <p className="text-xs leading-none text-muted-foreground">john@example.com</p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <DropdownMenuItem>Log out</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
         </header>
 
