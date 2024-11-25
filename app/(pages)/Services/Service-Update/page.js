@@ -1,15 +1,24 @@
 // Reference- https://v0.dev/ Prompt - make me a dashboard showing the work done for the service choose by the user
 
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
-import { Package } from 'lucide-react'
+"use client";
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { Package } from 'lucide-react';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+} from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 import {
   Table,
   TableBody,
@@ -17,8 +26,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
+} from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+
+// Register ChartJS modules
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 // Mock data for user services
 const userServices = [
@@ -27,20 +39,47 @@ const userServices = [
   { id: '3', name: 'Microwave Repair', progress: 0, status: 'Scheduled', spent: 0, total: 80 },
   { id: '4', name: 'Dishwasher Maintenance', progress: 50, status: 'In Progress', spent: 75, total: 150 },
   { id: '5', name: 'Oven Repair', progress: 25, status: 'In Progress', spent: 50, total: 200 },
-]
+];
 
 // Calculate total services and total spent
-const totalServices = userServices.length
-const totalSpent = userServices.reduce((sum, service) => sum + service.spent, 0)
+const totalServices = userServices.length;
+const totalSpent = userServices.reduce((sum, service) => sum + service.spent, 0);
 
 // Prepare data for the spending chart
-const spendingChartData = userServices.map(service => ({
-  name: service.name.split(' ')[0], // Use first word of service name for brevity
-  spent: service.spent
-}))
+const chartData = {
+  labels: userServices.map((service) => service.name.split(' ')[0]), // Use first word of service name for brevity
+  datasets: [
+    {
+      label: 'Amount Spent ($)',
+      data: userServices.map((service) => service.spent),
+      backgroundColor: '#adfa1d',
+      borderRadius: 4,
+    },
+  ],
+};
+
+const chartOptions = {
+  responsive: true,
+  plugins: {
+    legend: { display: false },
+    tooltip: {
+      callbacks: {
+        label: (context) => `$${context.raw}`,
+      },
+    },
+  },
+  scales: {
+    x: { grid: { display: false } },
+    y: {
+      ticks: {
+        callback: (value) => `$${value}`,
+      },
+      grid: { borderDash: [5, 5] },
+    },
+  },
+};
 
 export default function Dashboard() {
-
   return (
     <div className="flex h-screen bg-white">
       {/* Main Content */}
@@ -96,25 +135,7 @@ export default function Dashboard() {
                 <CardTitle>Service Spending Overview</CardTitle>
               </CardHeader>
               <CardContent className="pl-2">
-                <ResponsiveContainer width="100%" height={350}>
-                  <BarChart data={spendingChartData}>
-                    <XAxis
-                      dataKey="name"
-                      stroke="#888888"
-                      fontSize={12}
-                      tickLine={false}
-                      axisLine={false}
-                    />
-                    <YAxis
-                      stroke="#888888"
-                      fontSize={12}
-                      tickLine={false}
-                      axisLine={false}
-                      tickFormatter={(value) => `$${value}`}
-                    />
-                    <Bar dataKey="spent" fill="#adfa1d" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
+                <Bar data={chartData} options={chartOptions} />
               </CardContent>
             </Card>
 
@@ -168,5 +189,5 @@ export default function Dashboard() {
         </main>
       </div>
     </div>
-  )
+  );
 }
