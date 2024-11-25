@@ -1,11 +1,12 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
       const { serviceName, planName, area, baseAmount, appliances } = req.body;
+      console.log(req.body);
 
       const lineItems = [
         {
@@ -41,8 +42,15 @@ export default async function handler(req, res) {
         payment_method_types: ['card'],
         line_items: lineItems,
         mode: 'payment',
-        success_url: `${req.headers.origin}/Success`,
+        success_url: `${req.headers.origin}/SuccessRedirect?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/Cancel`,
+        metadata: {
+          serviceName,
+          planName,
+          area,
+          baseAmount: baseAmount.toString(), // Convert to string as metadata only supports strings
+          appliances: JSON.stringify(appliances), // Convert objects/arrays to JSON strings
+        },
       });
 
       res.status(200).json({ id: session.id });
