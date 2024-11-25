@@ -37,6 +37,8 @@ export default function Page() {
           baseAmount: parseFloat(baseAmount), // Convert back to number
           appliances: parsedAppliances,
           paymentStatus: session.payment_status,
+          status: "In Progress",
+          spent: 0,
         };
 
         console.log("Payment data:", user.uid);
