@@ -58,7 +58,7 @@ export async function fetchAppointmentDate(uid) {
     } else {
     }
   } catch (error) {
-    return error
+    return error;
   }
 }
 
