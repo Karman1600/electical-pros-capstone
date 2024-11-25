@@ -33,6 +33,7 @@ import { Button } from "@/components/ui/button"; // Ensure you have a Button com
 import { Plus } from "lucide-react"; // For the Add Service button icon
 import { useUserAuth } from "@/app/lib/auth-context";
 import getUserData from "@/app/lib/getData";
+import Link from "next/link";
 
 // Register ChartJS modules
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
@@ -43,20 +44,20 @@ export default function Page() {
   // Mock data for user services
   const [userServices, setUserServices] = useState(null);
 
-  async function fetchData() {
-    if (user && user.uid) {
-      getUserData(
-        async (data) => {
-          console.log(data);
-          setUserServices(data);
-        },
-        user.uid,
-        "payments"
-      );
-    }
-  }
-
   useEffect(() => {
+    async function fetchData() {
+      if (user && user.uid) {
+        getUserData(
+          async (data) => {
+            console.log(data);
+            setUserServices(data);
+          },
+          user.uid,
+          "payments"
+        );
+      }
+    }
+
     fetchData();
   }, [user]);
 
@@ -120,10 +121,6 @@ export default function Page() {
     }) ||
     {};
 
-  // Placeholder for adding a service
-  const handleAddService = () => {
-    alert("Add Service clicked! Implement functionality as needed.");
-  };
   return (
     <div className="flex h-screen bg-white">
       <div className="flex-1 flex flex-col overflow-hidden">
@@ -240,7 +237,8 @@ export default function Page() {
                                           ? 0
                                           : service.progress === "Completed"
                                           ? 100
-                                          : service.progress === "Scheduled" && 50
+                                          : service.progress === "Scheduled" &&
+                                            50
                                       }
                                       className="w-[60%]"
                                     />
@@ -323,13 +321,15 @@ export default function Page() {
                 <CardHeader>
                   <CardTitle>No Services Yet</CardTitle>
                   <CardDescription>
-                    You haven't added any services to your dashboard.
+                    You haven&apos;t added any services to your dashboard.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button onClick={handleAddService} className="mt-4">
-                    <Plus className="mr-2 h-4 w-4" /> Add Service
-                  </Button>
+                  <Link href="/Services">
+                    <Button className="mt-4">
+                      <Plus className="mr-2 h-4 w-4" /> Add Service
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             )}
