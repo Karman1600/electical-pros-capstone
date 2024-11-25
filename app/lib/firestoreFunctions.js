@@ -42,20 +42,6 @@ export async function checkAppointmentFromDB(data) {
   }
 
   return responseBool;
-
-  // userIDs.forEach(async (userId, x) => {
-  //   const userRef = collection(db, `users/${userId}/appointment`);
-
-  //   const querySnapshot = await getDocs(
-  //     query(userRef, where("appointmentDate", "==", data.appointmentDate))
-  //   );
-
-  //   if (!querySnapshot.empty) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // });
 }
 
 export async function fetchAppointmentDate(uid) {
