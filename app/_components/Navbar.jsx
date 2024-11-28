@@ -56,19 +56,18 @@ function Navbar() {
           </Link>
         </li>
         {auth.currentUser ? (
-          <li className="mt-1">
+          <li >
             <Link
               href={"/dashboard"}
-              className="font-bold text-xl justify-center items-center mt-2 p-2 bg-red-500 rounded-2xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-red-200"
-            >
+              >
               Dashboard
             </Link>
           </li>
         ) : (
-          <li className="mt-1">
+          <li >
             <Link
               href={"/sign-in"}
-              className="font-bold text-xl justify-center items-center mt-2 p-2 bg-red-500 rounded-2xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-red-200"
+              
             >
               Sign In
             </Link>

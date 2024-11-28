@@ -43,116 +43,72 @@ function Home() {
         </p>
       </section>
 
-      <section className="hero py-16 bg-white">
-  <div className=" mx-auto px-6 lg:px-12">
-    {/* Section Heading */}
-    <div className="text-center">
-      <h2 className="text-4xl font-bold text-gray-800 mb-6">
-        Expert Electrical Consulting
-      </h2>
-      <p className="text-lg text-gray-600 mb-8">
-        Empowering your business with innovative and expert electrical solutions.
-      </p>
-      <a href="/discover">
-        <button className="bg-blue-600 text-white py-3 px-8 rounded-full shadow-md hover:bg-blue-700 transition-all duration-300">
-          Discover More
-        </button>
-      </a>
-    </div>
+      {/* Hero Section */}
+      <section className="hero py-8 bg-gradient-to-b from-white to-gray-50">
+        <div className=" mx-auto px-6 lg:px-12">
+          {/* Section Heading */}
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1a365d] mb-6">
+              Expert Electrical Consulting
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 mb-12 leading-relaxed">
+              Empowering your business with innovative and expert electrical solutions.
+            </p>
+            <a href="/discover">
+              <button className="bg-[#1a365d] text-white py-4 px-10 rounded-full shadow-lg hover:bg-[#1a365d]/90 hover:shadow-2xl hover:scale-105 transition-all duration-300 font-medium">
+                Discover More
+              </button>
+            </a>
+          </div>
 
-    {/* Benefits Section */}
-    <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {/* Card 1 */}
-      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform transition-transform duration-300 hover:scale-105 text-center">
-        <div className="text-blue-600 mb-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            className="w-12 h-12 mx-auto"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M13.875 18.825L19.8 9.75H13.5l1.875-7.575L5.25 14.25h6.3l-1.875 7.575z"
-            />
-          </svg>
+          {/* Benefits Section */}
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="mb-6 text-[#1a365d]">
+                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1a365d] mb-4">Innovative Solutions</h3>
+              <p className="text-gray-600 leading-relaxed">
+                We bring cutting-edge designs and innovative thinking to every project, tailored to meet your unique needs.
+              </p>
+            </div>
+            <div className="p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="mb-6 text-[#1a365d]">
+                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1a365d] mb-4">Global Safety Standards</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Adhering to international safety regulations, we ensure all our solutions meet the highest standards.
+              </p>
+            </div>
+            <div className="p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="mb-6 text-[#1a365d]">
+                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1a365d] mb-4">Custom-Tailored Plans</h3>
+              <p className="text-gray-600 leading-relaxed">
+                From small-scale setups to large industrial projects, we create personalized plans that fit your goals.
+              </p>
+            </div>
+          </div>
         </div>
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">
-          Innovative Solutions
-        </h3>
-        <p className="text-gray-600">
-          We bring cutting-edge designs and innovative thinking to every project, tailored to meet your unique needs.
-        </p>
-      </div>
-
-      {/* Card 2 */}
-      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform transition-transform duration-300 hover:scale-105 text-center">
-        <div className="text-blue-600 mb-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            className="w-12 h-12 mx-auto"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 12c2.28 0 4.2-1.863 4.2-4.2 0-2.337-1.92-4.2-4.2-4.2s-4.2 1.863-4.2 4.2c0 2.337 1.92 4.2 4.2 4.2zm0 1.8c-4.08 0-7.2 2.253-7.2 5.4 0 .12 0 .225.015.315a.903.903 0 00.405.585c.285.18.645.3 1.08.3h11.4c.435 0 .795-.12 1.08-.3.225-.18.39-.45.405-.585.015-.09.015-.195.015-.315 0-3.147-3.12-5.4-7.2-5.4z"
-            />
-          </svg>
-        </div>
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">
-          Global Safety Standards
-        </h3>
-        <p className="text-gray-600">
-          Adhering to international safety regulations, we ensure all our solutions meet the highest standards.
-        </p>
-      </div>
-
-      {/* Card 3 */}
-      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform transition-transform duration-300 hover:scale-105 text-center">
-        <div className="text-blue-600 mb-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            className="w-12 h-12 mx-auto"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3 8.25h18m-18 4.5h18m-18 4.5h18"
-            />
-          </svg>
-        </div>
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">
-          Custom-Tailored Plans
-        </h3>
-        <p className="text-gray-600">
-          From small-scale setups to large industrial projects, we create personalized plans that fit your goals.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
+      </section>
 
       {/* Back to Top Button */}
       {showTopBtn && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-5 right-5 bg-blue-600 text-white py-2 px-4 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="fixed bottom-8 right-8 bg-[#1a365d] hover:bg-[#1a365d]/90 text-white p-4 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#1a365d] focus:ring-offset-2"
         >
-          Back to Top
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+          </svg>
         </button>
       )}
     </>
