@@ -56,7 +56,7 @@ function page() {
         name: user.displayName,
         email: user.email,
         date: formData.date,
-        time: formData.time,
+        //time: formData.time,
       },
       user?.uid
     );
