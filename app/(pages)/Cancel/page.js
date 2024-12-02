@@ -7,7 +7,7 @@ export default function Cancel() {
         </p>
         <div className="mt-6 space-x-4">
           <a href="/Services/confirmationPage" className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
-            Try Again
+            Try 
           </a>
           <a href="/contact" className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
             Contact Support
