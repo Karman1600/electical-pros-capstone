@@ -51,7 +51,7 @@ function DiscoverMore() {
     {
       name: 'Healthcare Facility Electrical Upgrade',
       description: 'Electrical upgrade for a major healthcare facility, improving safety and performance.',
-      rating: 4.9,
+      rating: 4.0,
       
     }
   ];
