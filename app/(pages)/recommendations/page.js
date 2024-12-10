@@ -50,3 +50,5 @@ const RecommendationsPage = () => {
 };
 
 export default RecommendationsPage;
+
+export default RecommendationsPage;

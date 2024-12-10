@@ -55,6 +55,11 @@ const servicesData = [
       category: "Industrial",
       description: "Installation and maintenance of industrial-scale solar panels.",
     },
+    {
+      id: 10,
+      name: "Quiz to 3D Model",
+      description: "Answer Quiz and get your 3D model.",
+    }
   ];
   
   export default servicesData;
