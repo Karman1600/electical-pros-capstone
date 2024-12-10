@@ -1,121 +1,52 @@
-"use client";
-import React, { useState } from "react";
+'use client'; // Indicates this component is client-side rendered
 
-const services = [
-  {
-    id: 1,
-    name: "Consulting Services",
-    description: "Strategic advice and technical expertise for all industries.",
-    isCommercial: true,
-    minBudget: 1000,
-    maxArea: 5000,
-  },
-  {
-    id: 2,
-    name: "Solution Design",
-    description: "Tailored electrical solutions for commercial, residential, and industrial spaces.",
-    isCommercial: true,
-    minBudget: 3000,
-    maxArea: 10000,
-  },
-  {
-    id: 3,
-    name: "Electrical Engineering Drawing",
-    description: "Detailed engineering drawings ensuring safety and compliance.",
-    isCommercial: false,
-    minBudget: 1500,
-    maxArea: 3000,
-  },
-  {
-    id: 4,
-    name: "Maintenance Services",
-    description: "Regular and corrective maintenance for all electrical systems.",
-    isCommercial: false,
-    minBudget: 500,
-    maxArea: 2000,
-  },
-];
+import { useState } from 'react'; // Importing React's useState for state management
+import ServiceSelection from './ServiceSelection'; // Component for selecting a service
+import ImageUpload from './ImageUpload'; // Component for uploading an image
+import ServiceRoomModel from './ServiceRoomModel'; // Component for displaying the 3D model of the service
 
-export default function Recommendations() {
-  const [budget, setBudget] = useState("");
-  const [area, setArea] = useState("");
-  const [isCommercial, setIsCommercial] = useState(false);
-  const [filteredServices, setFilteredServices] = useState([]);
+const RecommendationsPage = () => {
+  // State to store the selected service
+  const [selectedService, setSelectedService] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const recommendations = services.filter((service) => {
-      return (
-        service.isCommercial === isCommercial &&
-        service.minBudget <= budget &&
-        service.maxArea >= area
-      );
-    });
-    setFilteredServices(recommendations);
+  // State to store the uploaded image
+  const [uploadedImage, setUploadedImage] = useState(null);
+
+  // Function to handle the selection of a service
+  const handleServiceSelect = (service) => {
+    setSelectedService(service); // Updates the state with the selected service
+  };
+
+  // Function to handle the upload of an image
+  const handleImageUpload = (image) => {
+    setUploadedImage(image); // Updates the state with the uploaded image
   };
 
   return (
-    <div className="p-10 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-bold text-center mb-8 text-black">Service Recommendations</h1>
+    <div>
+      <h1>Electrical Consultancy Services</h1> {/* Page heading */}
       
-      <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
-        <div className="mb-4">
-          <label className="block text-lg font-semibold mb-2 text-black" htmlFor="budget">Budget ($):</label>
-          <input
-            type="number"
-            id="budget"
-            value={budget}
-            onChange={(e) => setBudget(e.target.value)}
-            className="w-full p-2 border rounded-lg"
-            required
-          />
-        </div>
-        
-        <div className="mb-4">
-          <label className="block text-lg font-semibold mb-2 text-black" htmlFor="area">Area (sq ft):</label>
-          <input
-            type="number"
-            id="area"
-            value={area}
-            onChange={(e) => setArea(e.target.value)}
-            className="w-full p-2 border rounded-lg"
-            required
-          />
-        </div>
+      {/* Service Selection */}
+      {/* If no service is selected, show the service selection component */}
+      {!selectedService && <ServiceSelection onSelect={handleServiceSelect} />}
 
-        <div className="mb-4">
-          <label className="block text-lg font-semibold mb-2 text-black">Is the property commercial?</label>
-          <input
-            type="checkbox"
-            checked={isCommercial}
-            onChange={(e) => setIsCommercial(e.target.checked)}
-            className="mr-2"
-          />
-          <span className="text-black">Yes</span>
+      {/* Display Selected Service and 3D Model */}
+      {selectedService && (
+        <div>
+          {/* Display the selected service's name and description */}
+          <h2>{selectedService.name}</h2>
+          <p>{selectedService.description}</p>
+
+          {/* Image Upload */}
+          {/* Allow user to upload an image */}
+          <ImageUpload onImageUpload={handleImageUpload} />
+
+          {/* Display 3D model regardless of image upload */}
+          <ServiceRoomModel service={selectedService.name} />
         </div>
-
-        <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded-lg">
-          Get Recommendations for your services
-        </button>
-      </form>
-
-      <div className="mt-10">
-        {filteredServices.length > 0 ? (
-          <div>
-            <h2 className="text-2xl font-semibold text-center mb-6 text-black">Recommended Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredServices.map((service) => (
-                <div key={service.id} className="bg-white p-5 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold text-black">{service.name}</h3>
-                  <p className="text-black">{service.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <p className="text-center text-lg text-black">No services match your criteria.</p>
-        )}
-      </div>
+      )}
     </div>
   );
-}
+};
+
+export default RecommendationsPage;

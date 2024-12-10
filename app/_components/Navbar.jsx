@@ -1,7 +1,7 @@
-"use client"; 
+"use client";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import Modes from './modes'; 
+import Modes from "./modes";
 import { useUserAuth } from "@/app/lib/auth-context";
 import { auth } from "@/app/lib/firebase";
 
@@ -22,7 +22,9 @@ function Navbar() {
 
   return (
     <nav className="bg-gray-900 p-4 flex justify-between items-center">
-      <div className="text-white text-2xl font-bold">Electrical-Pros</div>
+      <div className="text-white text-2xl font-bold">
+        <Link href={"/"}>Electrical-Pros</Link>
+      </div>
       <ul className="flex space-x-6 items-center text-white">
         <li>
           <Link href={"/index"}>Home</Link>
@@ -30,13 +32,19 @@ function Navbar() {
         <li>
           <Link href={"/Services"}>Services</Link>
         </li>
+        {user && user.uid && (
+          <li>
+            <Link href={"/Services/StatusBoard"}>Status Board</Link>
+          </li>
+        )}
+
         <li>
           <Link href={"/about"}>About</Link>
         </li>
         <li>
           <Link href={"/ContactUs"}>Contact Us</Link>
         </li>
-        
+
         <li>
           <Link href={"/search"}>
             <svg

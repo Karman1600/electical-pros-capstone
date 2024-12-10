@@ -31,6 +31,7 @@ function page() {
     const response = await deleteCurrentAppointment(user?.uid);
 
     if (response) {
+
       setNoAppointment(true);
       setAppointments();
     }
